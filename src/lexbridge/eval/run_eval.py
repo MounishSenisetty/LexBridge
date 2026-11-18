@@ -41,9 +41,16 @@ def answer_collision(answer: str, gold_toks: set, distractor_toks: set) -> float
     return float(hit(distractor_toks - gold_toks) and not hit(gold_toks - distractor_toks))
 
 
-def evaluate(system, questions: list[dict], store=None) -> dict:
+def evaluate(system, questions: list[dict], store=None, checkpoint: Path | None = None) -> dict:
+    """``checkpoint``: JSONL of finished rows; reruns resume from it (slow LLM runs)."""
     rows = []
+    done: dict[str, dict] = {}
+    if checkpoint and checkpoint.exists():
+        done = {r["qid"]: r for r in map(json.loads, checkpoint.read_text().splitlines()) if r}
     for q in questions:
+        if q["qid"] in done:
+            rows.append(done[q["qid"]])
+            continue
         out = system.answer(q["question"], q.get("offence_date") if q["category"] != "temporal" else None)
         ranked = M.ranked_docs(out)
         gold = set(q.get("gold_docs") or [])
@@ -68,6 +75,9 @@ def evaluate(system, questions: list[dict], store=None) -> dict:
             tag = next((a.get("tag") for a in out.get("applicability", []) if a.get("old") == q["gold_section"]), None)
             row["pred_tag"], row["gold_tag"] = tag or "DIRECTLY_APPLICABLE", q.get("gold_tag")
         rows.append(row)
+        if checkpoint:
+            with open(checkpoint, "a") as f:
+                f.write(json.dumps(row, default=str) + "\n")
 
     def m(key, cat=None):
         return M.mean([r.get(key) for r in rows if cat is None or r["category"] == cat])
@@ -96,7 +106,10 @@ def run(names: list[str], questions=None, res=None, write: bool = True, tag: str
     out_dir.mkdir(parents=True, exist_ok=True)
     for n in names:
         logger.info(f"evaluating {n} on {len(questions)} questions")
-        r = evaluate(get_system(n, res), questions, res.store)
+        ck = (out_dir / "checkpoints" / f"{n}{tag}.jsonl") if tag else None
+        if ck:
+            ck.parent.mkdir(parents=True, exist_ok=True)
+        r = evaluate(get_system(n, res), questions, res.store, ck)
         r["system"] = n
         out[n] = r
         if write:
@@ -115,9 +128,12 @@ def main(argv=None):
     ap.add_argument("--llm", default=None, help="force an LLM backend (mock|hf|ollama|openai)")
     ap.add_argument("--tag", default="", help="suffix for result files")
     ap.add_argument("--split", default="all", choices=["all", "dev", "test"])
+    ap.add_argument("--categories", default="", help="comma list to keep (e.g. collision,temporal)")
     a = ap.parse_args(argv)
     names = SYSTEMS if a.system == "all" else a.system.split(",")
     qs = [q for q in load_questions() if a.split == "all" or q.get("split", "test") == a.split]
+    if a.categories:
+        qs = [q for q in qs if q["category"] in a.categories.split(",")]
     if a.limit:
         import sys
         from ..config import ROOT

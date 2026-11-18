@@ -48,7 +48,7 @@ llm:
   ollama_model: qwen2.5:7b-instruct
   ollama_url: http://localhost:11434
   temperature: 0.0
-  max_tokens: 300
+  max_tokens: 180
   prompt_chunk_words: 120
   verifier_llm: false   # lexical claim check (an LLM judge per claim is ~5 s each on CPU)
   hf_model: Qwen/Qwen2.5-1.5B-Instruct   # local CPU LLM via transformers when no Ollama/API

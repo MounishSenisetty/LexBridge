@@ -123,7 +123,7 @@ python -m lexbridge.generate.pipeline "Punishment for murder under Section 103 B
 
 What each one does:
 
-- `make test` runs the 49 tests (sample profile).
+- `make test` runs the tests (sample profile).
 - `make ingest && make index && make eval` runs the sample pipeline end to end.
 - `make demo` starts Streamlit on :8501 with the collision-demo button. `make api` starts FastAPI on :8000.
 
@@ -209,7 +209,24 @@ judgments usually name the offence in words. Per category, P@5 for LexBridge vs 
 
 ### Generation (test subset, Qwen2.5-1.5B-Instruct on CPU)
 
-GENERATION_TABLE_PLACEHOLDER
+This covers 60 test questions (20 each of collision, cross-code and temporal). Only the **LLM-written text** is
+scored; LexBridge's templated header and dual-citation line are removed first.
+
+| System | Names the right offence | …on collision questions | Sentences grounded in retrieved text | Code acc | Temporal acc |
+|---|---|---|---|---|---|
+| No-RAG (real LLM) | 0.267 | **0.00** | — | 0.820 | 0.233 |
+| Hybrid-RAG | 0.400 | 0.05 | 0.610 | 0.940 | 0.233 |
+| **LexBridge** | **0.767** | **0.70** | 0.607 | **1.000** | **1.000** |
+
+- **Offence accuracy.** LexBridge beats hybrid by **+0.367 [+0.25, +0.50]** and No-RAG by **+0.50 [+0.38, +0.63]**,
+  both p < 0.001 by paired bootstrap. Part of the gain is that LexBridge puts the governing statute text in the
+  prompt, and the LLM uses it.
+- **No-RAG confabulates.** It calls IPC 333 and IPC 352 "Fraudulent Representation" (they are grievous hurt to deter
+  a public servant, and punishment for assault), and it refuses some questions as "political".
+- **Citation format.** The 1.5B model uses the `[doc¶n]` format in only about 5% of answers. So the citation-based
+  verifier, *faithfulness* and *citation P/R* can't be evaluated with this model. **The verifier and C3's effect on
+  answers remain untested.** They need a 7B+ instruction-following model.
+- **Grounding** is the same for both RAG systems (about 0.61).
 
 ### Component studies
 
