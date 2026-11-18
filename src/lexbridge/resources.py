@@ -17,7 +17,7 @@ from .index.sparse import BM25Index
 from .ingest import judgments as J
 from .ingest import mappings as M
 from .ingest.statutes import StatuteStore, load_jsonl, load_statutes, save_jsonl
-from .nlp.code_resolver import CodeResolver, HeadingLexicon
+from .nlp.code_resolver import CodeResolver, HeadingLexicon, NumberPrior
 from .schemas import Chunk, Judgment, SectionMapping, StatuteSection
 from .transfer.transferability import TransferResult, classify_all
 
@@ -131,7 +131,8 @@ def load_resources(build: bool = False, out_dir: Path | None = None, use_network
         conflicts = []
     store = StatuteStore(statutes)
     lexicon = HeadingLexicon.build(statutes, mappings)
-    resolver = CodeResolver(lexicon, cfg.transition)
+    # v2 resolver + P(code | number) counted from explicit citations in the corpus (no annotation needed)
+    resolver = CodeResolver(lexicon, cfg.transition, prior=NumberPrior.from_judgments(judgments, cfg.transition))
     import os
     rules_only = os.environ.get("LEXBRIDGE_TRANSFER", "") == "rules"
     transfer = classify_all(mappings, store, cache=out_dir / "transferability.jsonl", rules_only=rules_only)

@@ -8,6 +8,7 @@ from datetime import date
 
 from ..config import get_config
 from ..generate.llm import get_llm
+from ..retrieve.hybrid import diversify
 from ..generate.prompts import BASELINE_PROMPT, BASELINE_SYSTEM, DISCLAIMER
 from ..generate.temporal_gate import family_of
 from ..generate.verifier import verify
@@ -43,7 +44,8 @@ class RAGBaseline:
         return list(dict.fromkeys(out))
 
     def answer(self, query: str, offence_date: date | str | None = None) -> dict:
-        top = self.search(query)[: self.k]
+        top = diversify(self.search(query), lambda i: self.index.chunks[i].doc_id,
+                        get_config()["retrieval"].get("per_doc", 2))[: self.k]
         chunks = self.index.chunks
         cits = [{"id": chunks[i].chunk_id, "doc_id": chunks[i].doc_id, "title": chunks[i].title,
                  "date": chunks[i].date.isoformat() if chunks[i].date else None, "role": chunks[i].role,

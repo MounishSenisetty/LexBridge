@@ -25,8 +25,9 @@ r = load_resources(build=False)
 save_graph(build_graph(r.statutes, r.mappings, r.index('role').chunks, {k: v.label for k, v in r.transfer.items()}), __import__('pathlib').Path('$P/graph.gpickle'))
 print('ok')" > $L/5_graph.log 2>&1
 [ -f data/benchmark_real/lexbridge_qa_sample.jsonl ] || { step benchmark; python benchmark/generate_candidates.py --n 500 > $L/6_bench.log 2>&1; }
-step "resolver eval"; python -m lexbridge.eval.resolver_eval --n 3000 > $L/7_resolver.log 2>&1
+step "resolver eval"; for v in v1 v2 v2+prior; do python -m lexbridge.eval.resolver_eval --n 3000 --version $v --split test >> $L/7_resolver.log 2>&1; done
 step "retrieval eval + ablations"; LLM_BACKEND=mock python -m lexbridge.eval.ablations > $L/8_ablations.log 2>&1
 step "generation eval (n=$GEN_N)"; python -m lexbridge.eval.run_eval --system no_rag,hybrid,lexbridge --limit $GEN_N --llm hf --tag _gen > $L/9_gen.log 2>&1
+python benchmark/export_annotation_sheets.py > $L/11_sheets.log 2>&1
 python -m lexbridge.eval.ablations --gen-table $GEN_N "Qwen2.5-1.5B-Instruct" > $L/10_gentable.log 2>&1
 step done

@@ -34,6 +34,7 @@ retrieval:
   rrf_k: 60
   graph_k: 20
   rerank_top: 8
+  per_doc: 2           # max chunks per judgment in the context (all RAG systems)
 
 vector_store: numpy   # qdrant | faiss | numpy
 

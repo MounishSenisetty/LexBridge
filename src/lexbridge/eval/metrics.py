@@ -13,6 +13,11 @@ def recall_at_k(ranked: list[str], gold: set[str], k: int) -> float:
     return len(set(ranked[:k]) & gold) / len(gold) if gold else 0.0
 
 
+def precision_at_k(ranked: list[str], gold: set[str], k: int) -> float | None:
+    top = ranked[:k]
+    return len(set(top) & gold) / len(top) if top and gold else (0.0 if gold else None)
+
+
 def mrr(ranked: list[str], gold: set[str]) -> float:
     for i, d in enumerate(ranked, 1):
         if d in gold:

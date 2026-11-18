@@ -76,7 +76,7 @@ class HFLocalLLM(BaseLLM):  # pragma: no cover - needs model weights
         import torch
         msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
         enc = self.tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt", return_dict=True)
-        limit = 160 if task in ("transferability", "verify") else self.max_new_tokens
+        limit = 96 if task in ("transferability", "verify") else self.max_new_tokens
         with torch.inference_mode():
             out = self.model.generate(**enc, max_new_tokens=limit, do_sample=False,
                                       pad_token_id=self.tok.eos_token_id)

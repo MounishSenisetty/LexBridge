@@ -29,3 +29,14 @@ eval:
 
 clean:
 	rm -rf data/processed/* results/*.json
+
+# ---- real-data profile (CPU; see README "Results on real data") ----
+.PHONY: fetch-real real real-eval
+fetch-real:
+	python scripts/fetch_indiacode.py && python scripts/fetch_judgments.py 1500 1500 0,1,2,3,4,5,6,7
+
+real:
+	bash scripts/run_real.sh
+
+real-eval:
+	bash scripts/run_real_eval.sh

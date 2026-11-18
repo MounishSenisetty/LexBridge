@@ -9,7 +9,7 @@ from ..generate.pipeline import ABLATIONS
 from ..resources import load_resources
 from .run_eval import SYSTEMS, fmt, load_questions, run
 
-MAIN_COLS = [("CER@5", "CER@5$\\downarrow$"), ("code_resolution_acc", "Code acc"), ("Recall@5", "R@5"),
+MAIN_COLS = [("CER@5", "CER@5$\\downarrow$"), ("code_resolution_acc", "Code acc"), ("P@5", "P@5"), ("Recall@5", "R@5"),
              ("MRR", "MRR"), ("nDCG@5", "nDCG@5"), ("transfer_macroF1", "Transfer F1"),
              ("temporal_acc", "Temporal acc"), ("citation_P", "Cit.~P"), ("citation_R", "Cit.~R"),
              ("faithfulness", "Faith.")]
@@ -65,13 +65,15 @@ def main():
         print(gen_table(cfg.path("results"), cfg.path("tables") / "generation.tex", n, llm))
         return
     res = load_resources()
-    qs = load_questions()
+    split = sys.argv[sys.argv.index("--split") + 1] if "--split" in sys.argv else "all"
+    qs = [q for q in load_questions() if split == "all" or q.get("split", "test") == split]
     tables = get_config().path("tables")
     tables.mkdir(parents=True, exist_ok=True)
     main_res = run(SYSTEMS, qs, res)
     n = len(qs)
     real = not get_config().get("sample_mode", True)
-    what = "real eCourts corpus, silver labels, extractive generator" if real else "fixture corpus, mock LLM; not research results"
+    what = (f"real eCourts corpus, {split} split, silver labels, extractive generator" if real
+            else "fixture corpus, mock LLM; not research results")
     note = NOTE if not real else NOTE.replace("Fixture corpus + deterministic mock LLM:\n% these numbers check that the pipeline runs; they are NOT research results.",
                                               "Real corpus (eCourts via overthelex), silver relevance labels, extractive generator.")
     (tables / "main.tex").write_text(latex_table(

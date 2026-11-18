@@ -8,7 +8,7 @@ in BNS terms, but decades of case law cite the IPC. Plain RAG breaks in four way
 | Problem | Example |
 |---|---|
 | **Section-number collision** | IPC 302 = murder; **BNS 302 = wounding religious feelings** (BNS murder = 103) |
-| **Cross-code gap** | A BNS 103 question needs IPC 302 precedent |
+| **Cross-code gap** | A BNS 318 question needs precedent under IPC 415/417/418/420 |
 | **Transferability** | Some offences changed ingredients or punishment, or were dropped (IPC 377) |
 | **Temporal applicability** | The offence date decides the governing code |
 
@@ -20,7 +20,7 @@ LexBridge adds five components:
 - **C4** temporal gate
 - **C5** the LexBridge-QA benchmark kit
 
-> ⚠️ **Not legal advice.** Mappings and fixture texts are unverified; check everything against the bare acts.
+> ⚠️ **Not legal advice.** Mappings are checked automatically against official texts, but no human has verified them.
 
 ## Architecture
 
@@ -31,8 +31,8 @@ flowchart LR
   C1 --> R[Hybrid Retrieval: BM25 + Dense, RRF]
   C1 --> G[Cross-Code Graph Hop BNS↔IPC]
   G --> R
-  R --> F[Collision Filter]
-  F --> RR[Cross-encoder Rerank]
+  R --> F[Collision Filter + per-judgment cap]
+  F --> RR[Rerank, optional]
   RR --> C3[Transferability Scorer]
   C3 --> LLM[LLM Generation with citations]
   C4 --> LLM
@@ -40,36 +40,42 @@ flowchart LR
   V --> A[Answer + applicability tags + governing code]
 ```
 
-**Offline.** Statutes become `StatuteSection` records and mapping sources become `SectionMapping` rows
-(merged, with disagreements written to `mapping_conflicts.csv`). Judgments go through NER and the C1
-resolver, then role-aware chunking, then three stores: a dense index, a code-aware BM25 index (tokens
-expanded with `ipc_302` IDs) and a NetworkX graph:
+### Offline
 
-- `Judgment -CITES-> Section`
-- `Section -MAPS_TO{change_type}-> Section`, plus the reverse `MAPPED_FROM` edge
+Statutes become `StatuteSection` records. Mapping sources are merged into `SectionMapping` rows, and each row is
+checked automatically against the official texts. Judgments go through NER and C1, then role-aware chunking
+(using a learned role tagger), then three stores:
 
-**Online** (`LexBridge(res).answer(query, offence_date)`):
+- a dense index
+- a code-aware BM25 index (tokens expanded with `ipc_302`-style IDs)
+- a NetworkX graph: `Judgment -CITES-> Section`, `Section -MAPS_TO{change_type}-> Section`, plus the reverse `MAPPED_FROM`
+
+### Online
+
+`LexBridge(res).answer(query, offence_date)`:
 
 1. Resolve the query's sections (C1).
 2. Pick the governing code family from the offence date (C4).
-3. Hop across the transition, e.g. `BNS_103 → IPC_302 → judgments` (C2).
-4. Retrieve with BM25 + dense + graph, fused by RRF (k=60).
-5. Drop collision chunks.
-6. Rerank to the top 8.
-7. Tag each precedent's applicability (C3).
-8. Generate the answer with `[doc¶n]` / `[CODE §sec]` citations and a dual citation.
-9. Verify each claim against its cited text, regenerating once if needed.
+3. Hop across the transition (C2), e.g. `BNS_318 → IPC_415/417/418/420 → judgments`.
+4. Retrieve with BM25, dense and graph, fused by RRF.
+5. Drop collision chunks, and keep at most 2 chunks per judgment.
+6. Tag each precedent's applicability (C3).
+7. Generate the answer with `[doc¶n]` / `[CODE §sec]` citations and a dual citation.
+8. Verify each claim against its cited text.
 
-**C1 rule priority:**
+### C1 (resolver v2)
 
-1. explicit code in the same phrase (0.98)
-2. code mentioned within ±200 chars (0.85)
-3. the document's dominant code (0.75)
-4. document or offence date vs 1 July 2024 (0.70)
-5. offence keywords vs section headings (≤0.60)
-6. unresolved (0.20)
+Rules, in order:
 
-**C3 labels → tags:**
+1. explicit code in the same phrase
+2. a *free* code mention within ±200 characters (mentions attached to another reference don't count)
+3. date of the document or offence → code family; the family member is chosen by section existence,
+   heading match, then a corpus prior `P(code | number)` counted from explicit citations
+4. the document's dominant code
+5. a code attached to a neighbouring reference
+6. offence keywords vs section headings
+
+### C3 labels → tags
 
 | Change type | Applicability tag |
 |---|---|
@@ -78,106 +84,197 @@ expanded with `ipc_302` IDs) and a NetworkX graph:
 | ingredients_changed | REVIEW_REQUIRED |
 | omitted | NOT_APPLICABLE |
 
-Rules decide first (no new section; diff ratio > 0.97; only the punishment clause differs). An LLM JSON
-prompt handles the rest, and results are cached in `transferability.jsonl`.
+Rules decide first. The LLM handles the rest, and sees the mapped sub-clause rather than the whole section.
 
-## Setup
+## Two profiles
+
+| | Sample (default) | Real |
+|---|---|---|
+| Config | `configs/config.yaml` | `LEXBRIDGE_CONFIG=configs/config.real.yaml` |
+| Statutes | abridged fixtures | official India Code text: IPC 553, IEA 181, BNS 358, BNSS 531, BSA 170 sections |
+| Mappings | 11 seed rows | 562 IPC→BNS rows (HF), automatically checked |
+| Judgments | 14 synthetic | 2,955 real criminal judgments (eCourts, CC-BY-4.0): 1,491 decided before and 1,461 after 1 July 2024 |
+| Models | TF-IDF embedder, mock LLM | MiniLM-L6 embedder, Qwen2.5-1.5B-Instruct (CPU) |
+| Use | tests, demo, offline | experiments |
+
+Sources and fetch steps are in [`data/README.md`](data/README.md).
+
+## Setup and commands
 
 ```bash
 pip install -r requirements.txt && pip install -e .
 ```
 
-Everything runs on CPU with **no downloads**, using seed and fixture data, a built-in TF-IDF embedder,
-a passthrough reranker and a deterministic extractive `MockLLM`.
-
-To use real components:
-
-| Component | How |
-|---|---|
-| LLM | `ollama pull qwen2.5:7b-instruct` (auto-detected), or set `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL` for any OpenAI-compatible API |
-| Embeddings / reranker | `pip install -e ".[ml]"` and set `models.offline: false` in `configs/config.yaml` (bge-m3 → MiniLM; bge-reranker-v2-m3 → ms-marco MiniLM) |
-| Real data | see [`data/README.md`](data/README.md) |
-
-## Commands
-
 ```bash
-make test        # 45 tests
-make ingest      # → data/processed/*.jsonl, mapping_conflicts.csv
-make index       # chunks, BM25 + dense index, graph, transferability cache, benchmark candidates
-python -m lexbridge.generate.pipeline "Punishment for murder under Section 103 BNS?"
-python -m lexbridge.generate.pipeline "What is the punishment under Section 302?" --date 2025-01-10
-make api         # FastAPI :8000 — POST /ask, GET /section/{code}/{sec}, GET /map/{code}/{sec}
-make demo        # Streamlit :8501 — includes the "collision demo" button (baseline vs LexBridge)
-make eval        # all systems + ablations → results/*.json, paper/tables/{main,ablation}.tex
-python -m lexbridge.eval.run_eval --system hybrid      # one system: lexbridge|no_rag|bm25|dense|hybrid|all
-python -m lexbridge.eval.agreement data/benchmark/dummy_two_annotators.csv   # Cohen's κ
+make test
 ```
 
-## LexBridge-QA (C5)
+```bash
+make ingest && make index && make eval
+```
 
-`benchmark/generate_candidates.py` fills `benchmark/templates.yaml` from the mapping table and the
-fixture corpus. It produces 65 **draft** candidates in four categories (collision, cross_code_precedent,
-temporal, transfer) and a stratified 50-question sample.
+```bash
+make demo
+```
 
-Gold documents come from hand-labelled `gold_sections` on the fixtures, never from the system's own
-resolver. Annotation follows `benchmark/annotation_guidelines.md` with two annotators and κ ≥ 0.7.
+```bash
+python -m lexbridge.generate.pipeline "Punishment for murder under Section 103 BNS?"
+```
 
-## Results (pipeline check only)
+What each one does:
 
-> **These numbers are not research results.** They come from 14 synthetic judgments, 11 unverified
-> mappings, a mock LLM, and a draft benchmark written alongside the system. They show that the pipeline
-> and the metrics run, and that the fixtures exercise each failure mode.
+- `make test` runs the 49 tests (sample profile).
+- `make ingest && make index && make eval` runs the sample pipeline end to end.
+- `make demo` starts Streamlit on :8501 with the collision-demo button. `make api` starts FastAPI on :8000.
 
-| System | CER@5↓ | Code acc | R@5 | MRR | nDCG@5 | Transfer F1 | Temporal acc | Cit. P | Cit. R |
-|---|---|---|---|---|---|---|---|---|---|
-| No-RAG (simulated) | – | 0.558 | 0.000 | 0.000 | 0.000 | 0.176 | 0.286 | 0.000 | 0.000 |
-| BM25-RAG | 1.000 | 1.000 | 0.729 | 0.626 | 0.582 | 0.176 | 0.286 | 0.343 | 0.679 |
-| Dense-RAG | 0.923 | 0.977 | 0.695 | 0.631 | 0.577 | 0.176 | 0.214 | 0.329 | 0.633 |
-| Hybrid-RAG | 1.000 | 1.000 | 0.714 | 0.637 | 0.577 | 0.176 | 0.286 | 0.336 | 0.643 |
-| **LexBridge** | **0.000** | 1.000 | **0.957** | **0.986** | **0.961** | **0.942** | **1.000** | **0.881** | **0.867** |
+Real data, on CPU. You need `pip install torch --index-url https://download.pytorch.org/whl/cpu` and
+`pip install sentence-transformers transformers datasets pypdf`.
 
-The ablation table is in `paper/tables/ablation.tex`. Removing C1 or C2 brings collisions back
-(CER 0.154), and removing C4 halves temporal accuracy. The `-verifier` row is identical to the full
-system because the mock LLM is extractive, so every claim is already supported. Faithfulness is 1.0 for
-the same reason.
+```bash
+python scripts/fetch_indiacode.py
+```
 
-Metrics:
+```bash
+python scripts/fetch_judgments.py 1500 1500 0,1,2,3,4,5,6,7
+```
 
-- **CER@k:** share of collision questions with a wrong-code document in the top k.
-- **Code acc:** whether the resolved query section matches gold.
-- **R@k / MRR / nDCG@k:** document-level retrieval scores.
-- **Transfer F1:** macro-F1 over applicability tags.
-- **Temporal acc:** whether the governing code family is correct.
-- **Cit. P / Cit. R:** cited documents vs gold documents.
-- **Faith.:** verifier support rate. RAGAS is optional (`.[eval]`).
+```bash
+bash scripts/run_real.sh
+```
+
+```bash
+bash scripts/run_real_eval.sh
+```
+
+The four scripts, in order:
+
+1. `fetch_indiacode.py` downloads the official statutes into `data/raw/statutes/`.
+2. `fetch_judgments.py` samples the eCourts judgments into `data/raw/judgments/overthelex/`.
+3. `run_real.sh` handles ingest, the role tagger, the index, C3 with the LLM, the benchmark and the resolver evaluation.
+4. `run_real_eval.sh` runs the test-split retrieval evaluation, ablations, significance tests and generation (about 1.5 h on 4 cores).
+
+## Results on real data
+
+**Benchmark.** LexBridge-QA has 470 silver questions in four categories, split 50/50 by question ID. All design
+choices were made on **dev**; every table below is **test** (n = 215) unless noted.
+
+**What the labels are.** Relevant documents are *silver*: judgments that cite the section **with an explicit
+code** ("Section 302 IPC"). These labels don't depend on the resolver's inference rules, but **they favour
+systems that use citation structure, as LexBridge does**. Human relevance judgments are needed before any of
+this counts as a claim; the annotation sheets are ready in `data/benchmark_real/`.
+
+### Retrieval (test, extractive generator)
+
+| System | CER@5 ↓ | Code acc | P@5 | MRR | nDCG@5 | Temporal acc |
+|---|---|---|---|---|---|---|
+| BM25-RAG | 0.070 | 0.943 | 0.187 | 0.324 | 0.198 | 0.132 |
+| Dense-RAG (MiniLM) | 0.000 | 0.952 | 0.087 | 0.186 | 0.099 | 0.132 |
+| Hybrid-RAG | 0.047 | 0.948 | 0.150 | 0.271 | 0.159 | 0.132 |
+| **LexBridge** | 0.047 | **0.995** | **0.626** | **0.790** | **0.665** | **1.000** |
+
+Paired bootstrap against BM25 (5,000 resamples):
+
+| Metric | Δ [95% CI] | p |
+|---|---|---|
+| P@5 | +0.439 [+0.393, +0.485] | < 0.001 |
+| MRR | +0.466 [+0.405, +0.527] | < 0.001 |
+| Code acc | +0.052 [+0.024, +0.086] | < 0.001 |
+| Temporal acc | +0.868 [+0.791, +0.934] | < 0.001 |
+| **CER@5** | −0.023 [−0.116, +0.070] | **0.40, not significant** |
+
+On real data, collisions in the top 5 are rare for every system (n = 43 collision questions), because real
+judgments usually name the offence in words. Per category, P@5 for LexBridge vs BM25 is:
+
+| Category | LexBridge | BM25 |
+|---|---|---|
+| collision | 0.72 | 0.15 |
+| cross-code precedent | 0.72 | 0.27 |
+| temporal | 0.47 | 0.12 |
+
+### Ablations (test)
+
+| Variant | Code acc | P@5 | MRR | nDCG@5 | Temporal acc |
+|---|---|---|---|---|---|
+| full | 0.995 | 0.626 | 0.790 | 0.665 | 1.000 |
+| −C1 resolver | 0.895 | 0.482 | 0.662 | 0.522 | 1.000 |
+| −C2 graph hop | 0.995 | 0.390 | 0.666 | 0.431 | 1.000 |
+| −C4 temporal gate | 0.914 | 0.556 | 0.701 | 0.590 | 0.516 |
+| −role-aware chunking | 0.995 | 0.635 | 0.795 | 0.674 | 1.000 |
+| −C3 / −verifier | identical to full | | | | |
+
+- **C2** contributes the most, then **C1**, then **C4**.
+- Role-aware chunking makes no measurable difference: it's slightly *worse*, within noise.
+- C3 and the verifier don't change retrieval by design. C3 tags results, and the verifier edits answers, which
+  the generation table measures. Transfer F1 is blank because transfer gold needs annotators.
+
+### Generation (test subset, Qwen2.5-1.5B-Instruct on CPU)
+
+GENERATION_TABLE_PLACEHOLDER
+
+### Component studies
+
+**C1, masked-code evaluation.** I took 3,000 explicit references from held-out judgments, blanked the code
+mention, and re-resolved:
+
+| Resolver | Test accuracy |
+|---|---|
+| always IPC | 0.473 |
+| date only | 0.770 |
+| v1 (original) | **0.668** (worse than date only) |
+| v2 | 0.772 |
+| **v2 + corpus prior** | **0.867** |
+
+The original window rule picked up codes attached to *neighbouring* references, so "Section 313 Cr.P.C."
+leaked onto an adjacent IPC reference. Fixes were chosen on dev judgments; the prior is counted on dev only.
+
+**Role tagger.** On the MARRO Indian rhetorical-role test set (2,602 sentences), macro-F1 is **0.116** for the
+original rules and **0.669** for the learned TF-IDF + logistic-regression tagger. The rules were overfitted to the
+synthetic fixtures.
+
+**Reranker (dev).** The general-domain `ms-marco-MiniLM` cross-encoder cut LexBridge's dev P@5 from **0.664 to
+0.346**, because it doesn't know which code is meant. It's off in the real profile (`rerank_mode: none`).
+`bge-reranker-v2-m3` was measured at 0.7 pairs/s on this CPU and couldn't be tested.
+
+**Mapping check.** Of the 562 HF rows, 508 are consistent with the official texts, 32 are suspect and 22 are
+unchecked. The suspect rows include clear numbering errors in the source dataset, e.g. IPC 171A → BNS 169 (the
+dataset says 206), and an off-by-one run across IPC 442–460. See `data/README.md`.
+
+**First run, before the dev/test split** (`results/real/run1_pretuning/`, all 470 questions, reranker on,
+narrower cross-code labels): LexBridge P@5 0.298 vs BM25 0.199. These are kept for transparency.
+
+## Sample profile (fixtures)
+
+The fixture pipeline (`make eval` → `paper/tables/{main,ablation}.tex`) uses 14 synthetic judgments and a mock
+LLM. It's a regression check that each failure mode is exercised (for example, the BNS 302 collision demo).
+**It is not evidence.**
 
 ## Layout
 
 ```
-configs/config.yaml       data/{raw,processed,seed,benchmark}/ + data/README.md
+configs/{config,config.real}.yaml     data/{seed,benchmark,benchmark_real}/ + data/README.md
 src/lexbridge/
   schemas.py config.py resources.py
-  ingest/{statutes,mappings,judgments}.py
-  nlp/{section_ner,code_resolver,rhetorical_roles,date_extractor}.py
-  index/{chunker,dense,sparse,graph}.py
-  retrieve/{hybrid,cross_code,rerank}.py
-  transfer/{diff,transferability}.py
-  generate/{llm,prompts,temporal_gate,pipeline,verifier}.py
-  baselines/{no_rag,bm25_rag,dense_rag,hybrid_rag,common}.py
-  eval/{metrics,run_eval,ablations,agreement}.py
-  api/server.py  ui/app.py
-benchmark/  scripts/01_ingest.sh … 04_run_eval.sh  tests/  paper/{main.tex,tables/}
+  ingest/{statutes,mappings,judgments,verify_mappings}.py
+  nlp/{section_ner,code_resolver,rhetorical_roles,role_classifier,date_extractor}.py
+  index/{chunker,dense,sparse,graph}.py      retrieve/{hybrid,cross_code,rerank}.py
+  transfer/{diff,transferability}.py         generate/{llm,prompts,temporal_gate,pipeline,verifier}.py
+  baselines/  eval/{metrics,run_eval,ablations,agreement,resolver_eval,significance}.py  api/  ui/
+benchmark/{templates.yaml,generate_candidates.py,export_annotation_sheets.py,annotation_guidelines.md}
+scripts/{01..05,fetch_indiacode,fetch_judgments,run_real,run_real_eval}.*   tests/  paper/
 ```
 
 ## Limitations
 
-- **Fixture data and a mock LLM.** Every number above checks the pipeline, not research performance.
-  The No-RAG baseline is *simulated* as IPC-dominated parametric memory and must be re-run with a real LLM.
-- **Unverified mappings.** The 11 seed mappings and the abridged statute texts are not verified against
-  the bare acts. Mapping errors propagate directly into retrieval, collision filtering and applicability tags.
-- **Draft gold labels.** Benchmark gold labels (including `draft_transfer_gold`) are drafts by the
-  system author and need independent annotation. For example, the draft gold says IPC 302 → BNS 103 is
-  DIRECTLY_APPLICABLE, but the C3 heuristic labels it `merged` (CAVEAT) because 103(2) is new.
-- **Scope.** Criminal law only. Procedure under the BNSS savings clause is only flagged, not reasoned about.
-  The rhetorical-role tagger is rule-based.
+- **No human annotation yet.** Relevance labels are silver, built from explicit citations, which advantages
+  citation-based systems. Transfer gold is empty. The annotation sheets
+  (`data/benchmark_real/annotation_sheet_{A,B}.csv`, `mapping_review.csv`) and the κ script are ready for two
+  annotators.
+- **CPU-scale models.** MiniLM instead of bge-m3; no reranker; a 1.5B LLM. Its C3 labels for 287 mappings and
+  its answers are weak. Re-run on a GPU with bge-m3, bge-reranker and a 7B+ model.
+- **Gaps in coverage.**
+  - No CrPC text (India Code has only an unusable OCR scan).
+  - No CrPC→BNSS or IEA→BSA mappings.
+  - The IEEE mapping file, IL-TUR and InJudgements are gated or login-only and weren't used.
+- **Unverified mappings.** They are automatically checked only. Errors propagate into retrieval and tags.
+- **Corpus scope.** About 3,000 judgments sampled from row groups of one HF split, mostly High Courts.
 - **Not legal advice.**

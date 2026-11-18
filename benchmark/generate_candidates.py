@@ -75,7 +75,10 @@ def build(res, tpl: dict) -> list[dict]:
         for t_i, t in enumerate(tpl["cross_code_precedent"]):
             add("cross_code_precedent", f"cross_code_precedent.{t_i}",
                 t.format(new=m.new_section, title=lower_title(m.title)),
-                gold_section=m.new_id, gold_docs=docs(m.new_id, m.old_id), gold_governing=None, offence_date=None)
+                # A BNS question: precedents under EVERY IPC predecessor of the new section are relevant
+            # (BNS 318 ← IPC 415/417/418/420), not only the row the question was generated from.
+            gold_section=m.new_id, gold_docs=docs(m.new_id, *res.table.counterparts(m.new_id)),
+            gold_governing=None, offence_date=None)
 
     # --- temporal
     for k, m in enumerate(res.mappings):
@@ -97,6 +100,12 @@ def build(res, tpl: dict) -> list[dict]:
             gold_section=m.old_id, gold_tag=tpl["draft_transfer_gold"].get(m.old_id), gold_docs=docs(m.old_id, m.new_id),
             gold_governing=None, offence_date=None)
     return items
+
+
+def split_of(key: str) -> str:
+    """Deterministic 50/50 dev/test split (design decisions on dev only; report test)."""
+    import hashlib
+    return "dev" if int(hashlib.md5(key.encode()).hexdigest(), 16) % 2 == 0 else "test"
 
 
 def silver_docs(res) -> dict[str, set[str]]:
@@ -127,8 +136,9 @@ def build_real(res, tpl: dict, per_cat: int = 125, min_docs: int = 3, seed: int 
     items: list[dict] = []
 
     def add(cat, tid, q, **gold):
-        items.append({"qid": f"{cat[:3].upper()}-{len(items) + 1:04d}", "category": cat, "template_id": tid,
-                      "question": q, "status": "draft", "labels": "silver", **gold})
+        qid = f"{cat[:3].upper()}-{len(items) + 1:04d}"
+        items.append({"qid": qid, "category": cat, "template_id": tid, "question": q, "status": "draft",
+                      "labels": "silver", "split": split_of(qid), **gold})
 
     store = res.store.by_id
     good = [m for m in res.mappings if m.auto_check == "consistent"]
@@ -172,7 +182,10 @@ def build_real(res, tpl: dict, per_cat: int = 125, min_docs: int = 3, seed: int 
         title = store[m.new_id].title if m.new_id in store else m.title
         add("cross_code_precedent", f"cross_code_precedent.{t_i}",
             tpl["cross_code_precedent"][t_i].format(new=m.new_section, title=low(title)),
-            gold_section=m.new_id, gold_docs=docs(m.new_id, m.old_id), gold_governing=None, offence_date=None)
+            # A BNS question: precedents under EVERY IPC predecessor of the new section are relevant
+            # (BNS 318 ← IPC 415/417/418/420), not only the row the question was generated from.
+            gold_section=m.new_id, gold_docs=docs(m.new_id, *res.table.counterparts(m.new_id)),
+            gold_governing=None, offence_date=None)
 
     # --- temporal: the date decides the governing provision
     tm = [m for m in good if m.new_id and len(silver.get(m.old_id, ())) + len(silver.get(m.new_id, ())) >= min_docs]

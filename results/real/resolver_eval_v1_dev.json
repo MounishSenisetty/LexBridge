@@ -1,0 +1,84 @@
+{
+  "version": "v1",
+  "split": "dev",
+  "n": 3000,
+  "accuracy": 0.674,
+  "baseline_always_IPC": 0.5023,
+  "baseline_date_only": 0.7819,
+  "per_rule": {
+    "dominant": {
+      "n": 370,
+      "acc": 0.6216
+    },
+    "date": {
+      "n": 1663,
+      "acc": 0.798
+    },
+    "window": {
+      "n": 967,
+      "acc": 0.4809
+    }
+  },
+  "confusion_top": [
+    [
+      "IPC",
+      "IPC",
+      1132
+    ],
+    [
+      "BNS",
+      "BNS",
+      601
+    ],
+    [
+      "IPC",
+      "CrPC",
+      309
+    ],
+    [
+      "BNS",
+      "BNSS",
+      200
+    ],
+    [
+      "BNSS",
+      "BNSS",
+      170
+    ],
+    [
+      "CrPC",
+      "IPC",
+      162
+    ],
+    [
+      "CrPC",
+      "CrPC",
+      119
+    ],
+    [
+      "BNSS",
+      "BNS",
+      56
+    ],
+    [
+      "CrPC",
+      "BNSS",
+      43
+    ],
+    [
+      "IPC",
+      "BNS",
+      42
+    ],
+    [
+      "BNS",
+      "BSA",
+      40
+    ],
+    [
+      "BNS",
+      "IPC",
+      35
+    ]
+  ]
+}

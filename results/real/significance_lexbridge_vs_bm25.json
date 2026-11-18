@@ -1,0 +1,162 @@
+{
+  "system": "lexbridge",
+  "baseline": "bm25",
+  "overall": {
+    "P@5": {
+      "n": 178,
+      "system": 0.6256,
+      "baseline": 0.1865,
+      "diff": 0.439,
+      "ci95": [
+        0.3927,
+        0.4851
+      ],
+      "p": 0.0
+    },
+    "MRR": {
+      "n": 178,
+      "system": 0.7904,
+      "baseline": 0.3242,
+      "diff": 0.4662,
+      "ci95": [
+        0.4046,
+        0.5274
+      ],
+      "p": 0.0
+    },
+    "nDCG@5": {
+      "n": 178,
+      "system": 0.665,
+      "baseline": 0.1977,
+      "diff": 0.4673,
+      "ci95": [
+        0.4185,
+        0.5158
+      ],
+      "p": 0.0
+    },
+    "CER@5": {
+      "n": 43,
+      "system": 0.0465,
+      "baseline": 0.0698,
+      "diff": -0.0233,
+      "ci95": [
+        -0.1163,
+        0.0698
+      ],
+      "p": 0.4
+    },
+    "Code acc": {
+      "n": 210,
+      "system": 0.9952,
+      "baseline": 0.9429,
+      "diff": 0.0524,
+      "ci95": [
+        0.0238,
+        0.0857
+      ],
+      "p": 0.0
+    },
+    "Temporal acc": {
+      "n": 91,
+      "system": 1.0,
+      "baseline": 0.1319,
+      "diff": 0.8681,
+      "ci95": [
+        0.7912,
+        0.9341
+      ],
+      "p": 0.0
+    }
+  },
+  "per_category": {
+    "collision": {
+      "P@5": {
+        "n": 43,
+        "system": 0.7163,
+        "baseline": 0.1535
+      },
+      "MRR": {
+        "n": 43,
+        "system": 0.8682,
+        "baseline": 0.2922
+      },
+      "nDCG@5": {
+        "n": 43,
+        "system": 0.7548,
+        "baseline": 0.1669
+      },
+      "CER@5": {
+        "n": 43,
+        "system": 0.0465,
+        "baseline": 0.0698
+      },
+      "Code acc": {
+        "n": 43,
+        "system": 0.9767,
+        "baseline": 0.7209
+      },
+      "Temporal acc": {
+        "n": 22,
+        "system": 1.0,
+        "baseline": 0.5455
+      }
+    },
+    "cross_code_precedent": {
+      "P@5": {
+        "n": 66,
+        "system": 0.7242,
+        "baseline": 0.2727
+      },
+      "MRR": {
+        "n": 66,
+        "system": 0.8843,
+        "baseline": 0.4715
+      },
+      "nDCG@5": {
+        "n": 66,
+        "system": 0.7629,
+        "baseline": 0.294
+      },
+      "Code acc": {
+        "n": 66,
+        "system": 1.0,
+        "baseline": 1.0
+      }
+    },
+    "temporal": {
+      "P@5": {
+        "n": 69,
+        "system": 0.4746,
+        "baseline": 0.1246
+      },
+      "MRR": {
+        "n": 69,
+        "system": 0.6522,
+        "baseline": 0.2033
+      },
+      "nDCG@5": {
+        "n": 69,
+        "system": 0.5155,
+        "baseline": 0.1248
+      },
+      "Code acc": {
+        "n": 34,
+        "system": 1.0,
+        "baseline": 1.0
+      },
+      "Temporal acc": {
+        "n": 69,
+        "system": 1.0,
+        "baseline": 0.0
+      }
+    },
+    "transfer": {
+      "Code acc": {
+        "n": 67,
+        "system": 1.0,
+        "baseline": 1.0
+      }
+    }
+  }
+}

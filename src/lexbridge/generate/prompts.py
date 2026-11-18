@@ -13,7 +13,7 @@ NEW ({new_code} Section {new_section}):
 {new_text}
 
 Allowed labels: {labels}
-Return JSON: {{"label": "<one label>", "changed_elements": ["ingredients"|"punishment"|...], "rationale": "<one sentence>"}}"""
+Return only JSON, with a rationale of at most 20 words: {{"label": "<one label>", "changed_elements": ["ingredients"|"punishment"|...], "rationale": "<short>"}}"""
 
 ANSWER_SYSTEM = """You are LexBridge, an assistant for Indian criminal law across the 1 July 2024 transition
 (IPC→BNS, CrPC→BNSS, Evidence Act→BSA). Rules:

@@ -33,6 +33,21 @@ def _result(m: SectionMapping, label: str, changed, rationale: str, method: str)
     return TransferResult(m.old_id, m.new_id, ct.value, CHANGE_TO_TAG[ct].value, list(changed), rationale, method)
 
 
+def _relevant_part(old_text: str, new_text: str, sub: str = "") -> str:
+    """The mapped sub-clause ("(5)" of BNS 2) if given, else the sub-section most similar to the old text."""
+    import re
+    from .diff import ratio
+    parts = re.split(r"\((\d{1,2})\)\s*", new_text)
+    subs = {f"({parts[i]})": parts[i + 1] for i in range(1, len(parts) - 1, 2)}
+    first = re.match(r"\(\d{1,2}\)", sub or "")
+    if first and first.group(0) in subs:
+        return f"{first.group(0)} {subs[first.group(0)]}"
+    if len(subs) > 1:
+        k = max(subs, key=lambda k: ratio(old_text[:900], subs[k][:1200]))
+        return f"{k} {subs[k]}"
+    return new_text
+
+
 def classify(m: SectionMapping, statutes: StatuteStore, llm=None) -> TransferResult:
     if not m.new_id:
         return _result(m, "omitted", [], "no corresponding section in the new code", "rule")
@@ -51,8 +66,10 @@ def classify(m: SectionMapping, statutes: StatuteStore, llm=None) -> TransferRes
     if llm is None:
         from ..generate.llm import get_llm
         llm = get_llm()
+    new_text = _relevant_part(old.text, new.text, m.new_subsection)
     prompt = TRANSFER_PROMPT.format(old_code=m.old_code, old_section=m.old_section, old_text=old.text[:900],
-                                    new_code=m.new_code, new_section=m.new_section, new_text=new.text[:1200],
+                                    new_code=m.new_code, new_section=f"{m.new_section}{m.new_subsection}",
+                                    new_text=new_text[:1200],
                                     labels=", ".join(sorted(VALID - {"new", "unknown"})))
     out = llm.complete_json(prompt, system=TRANSFER_SYSTEM, task="transferability", context={"diff": asdict(d)})
     label = out.get("label", "unknown")

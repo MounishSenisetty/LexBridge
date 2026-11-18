@@ -14,7 +14,9 @@ import random
 from collections import Counter, defaultdict
 
 from ..config import get_config
-from ..nlp.code_resolver import _family_member, dominant_code
+import hashlib
+
+from ..nlp.code_resolver import CodeResolver, Context, NumberPrior, _family_member
 from ..nlp.section_ner import CODE_RE, extract_sections
 from ..resources import load_resources
 
@@ -30,10 +32,21 @@ def masked_examples(judgments, n: int, seed: int = 7):
     return ex[:n]
 
 
-def run(n: int = 3000) -> dict:
+def split_of(doc_id: str) -> str:
+    """Deterministic 50/50 dev/test split by judgment."""
+    return "dev" if int(hashlib.md5(doc_id.encode()).hexdigest(), 16) % 2 == 0 else "test"
+
+
+def run(n: int = 3000, version: str = "v2", split: str = "test") -> dict:
+    """version: v1 | v2 | v2+prior (prior counted on the dev judgments only, so test is untouched)."""
     res = load_resources()
     cfg = get_config()
-    ex = masked_examples(res.judgments, n)
+    prior = None
+    if version.endswith("+prior"):
+        prior = NumberPrior.from_judgments([j for j in res.judgments if split_of(j.doc_id) == "dev"], cfg.transition)
+    resolver = CodeResolver(res.lexicon, cfg.transition, version=version.split("+")[0], prior=prior)
+    docs = [j for j in res.judgments if split == "all" or split_of(j.doc_id) == split]
+    ex = masked_examples(docs, n)
     stats = Counter()
     per_rule = defaultdict(Counter)
     confusion = Counter()
@@ -46,7 +59,7 @@ def run(n: int = 3000) -> dict:
         a, b = r.start + m[-1].start(), r.start + m[-1].end()
         text = j.text[:a] + " " * (b - a) + j.text[b:]
         hidden = r.model_copy(update={"code": None})
-        out = res.resolver.resolve_ref(hidden, text, j.date, dominant_code(text), None, {"explicit"})
+        out = resolver.resolve_ref(hidden, text, j.date, Context(text), {"explicit"})
         gold = r.code
         stats["n"] += 1
         stats["correct"] += out.code == gold
@@ -61,6 +74,7 @@ def run(n: int = 3000) -> dict:
         confusion[(gold, out.code)] += 1
     N = max(1, stats["n"])
     report = {
+        "version": version, "split": split,
         "n": stats["n"],
         "accuracy": round(stats["correct"] / N, 4),
         "baseline_always_IPC": round(stats["always_ipc"] / N, 4),
@@ -70,14 +84,17 @@ def run(n: int = 3000) -> dict:
     }
     out = cfg.path("results")
     out.mkdir(parents=True, exist_ok=True)
-    (out / "resolver_eval.json").write_text(json.dumps(report, indent=2))
+    (out / f"resolver_eval_{version.replace('+', '_')}_{split}.json").write_text(json.dumps(report, indent=2))
     return report
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=3000)
-    print(json.dumps(run(ap.parse_args(argv).n), indent=2))
+    ap.add_argument("--version", default="v2")
+    ap.add_argument("--split", default="test", choices=["dev", "test", "all"])
+    a = ap.parse_args(argv)
+    print(json.dumps(run(a.n, a.version, a.split), indent=2))
 
 
 if __name__ == "__main__":

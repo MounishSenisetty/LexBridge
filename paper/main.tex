@@ -53,15 +53,27 @@ LexBridge-QA, a benchmark targeting these failure modes. % TODO: headline number
 % citation P/R, faithfulness).
 
 \section{Results}
-% NOTE: tables below are currently auto-generated from fixture data + a mock LLM (pipeline check, not results).
-\input{tables/main}
-\input{tables/ablation}
+% Real profile: 2,955 eCourts judgments, official India Code statutes, 562 HF mappings; LexBridge-QA silver
+% labels (explicit citations), test split (n=215). Design choices were made on dev. Tables are auto-generated.
+\input{tables/real/main}
+\input{tables/real/ablation}
+\input{tables/real/significance_bm25}
+\input{tables/real/generation}
+% Fixture regression tables (not evidence): tables/main.tex, tables/ablation.tex
+
+\subsection{Component studies}
+% C1 masked-code evaluation (test): always-IPC 0.473, date-only 0.770, v1 0.668, v2 0.772, v2+prior 0.867.
+% Role tagger (MARRO IN test): rules 0.116 vs learned 0.669 macro-F1.
+% Reranker study (dev): ms-marco cross-encoder P@5 0.346 vs none 0.664.
+% Mapping check: 508 consistent / 32 suspect / 22 unchecked; HF numbering errors (171A, 442--460).
 
 \section{Error Analysis}
-% Mapping errors, resolver failures on unlabelled numbers, transferability disagreements (e.g. IPC 302 → BNS 103(1)/(2)).
+% Silver-label bias toward citation-based retrieval; CER not significant on real data (n=43);
+% citing typos in judgments ("302(2)" for 303(2)); HF mapping off-by-one errors; weak 1.5B C3 labels.
 
 \section{Limitations}
-Criminal law only; mapping errors propagate into retrieval and applicability tags; rule-based role tagging;
+Relevance labels are silver (explicit citations) and favour citation-aware systems; no human annotation yet;
+CPU-scale models (MiniLM, Qwen2.5-1.5B); no CrPC text or CrPC/IEA mappings. Criminal law only; mapping errors propagate into retrieval and applicability tags; rule-based role tagging;
 procedural savings under the BNSS are flagged but not modelled. LexBridge does not provide legal advice.
 
 \section*{Ethics Statement}

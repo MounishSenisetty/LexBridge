@@ -36,7 +36,10 @@ retrieval:
   rrf_k: 60
   graph_k: 20
   rerank_top: 8
+  per_doc: 2           # max chunks per judgment in the context (all RAG systems)
   rerank_candidates: 20
+  rerank_mode: none    # rerank | none | rerank+cite | fuse. Chosen on the dev split: the general-domain
+                       # ms-marco cross-encoder cut dev P@5 from 0.664 to 0.346 (results/real/rerank_study_dev.json)
 
 vector_store: numpy   # qdrant | faiss | numpy
 

@@ -16,7 +16,7 @@ from ..index.graph import counterparts
 from ..nlp.code_resolver import _stem, _tokens
 from ..resources import NON_EXPLICIT_RULES, Resources
 from ..retrieve.cross_code import collision_filter, expand_ids, graph_candidates
-from ..retrieve.hybrid import rrf
+from ..retrieve.hybrid import diversify, rrf
 from ..retrieve.rerank import Reranker
 from ..schemas import Applicability
 from .llm import get_llm
@@ -119,10 +119,28 @@ class LexBridge:
         if self.flags.collision_filter and self.flags.c1 and expanded:
             order, dropped = collision_filter(idx.chunks, order, expanded)
         scores = dict(fused)
-        top = self.reranker.rerank(query, [(i, scores[i]) for i in order], [c.text for c in idx.chunks], r["rerank_top"])
+        cands = diversify([(i, scores[i]) for i in order], lambda i: idx.chunks[i].doc_id, r.get("per_doc", 2))
+        top = self._rerank(query, cands, expanded, r)
+        top = diversify(top, lambda i: idx.chunks[i].doc_id, r.get("per_doc", 2))
         debug = {"expanded_ids": expanded, "bm25": bm[:10], "dense": dn[:10], "graph": gr[:10],
                  "dropped_collisions": [idx.chunks[i].chunk_id for i in dropped]}
         return top, debug
+
+    def _rerank(self, query: str, cands: list[tuple[int, float]], expanded: list[str], r: dict):
+        """rerank_mode: rerank (cross-encoder order) | none (fusion order) | rerank+cite (cross-encoder order,
+        but chunks whose judgment cites a target/counterpart section first) | fuse (RRF of fusion and rerank)."""
+        idx, mode, k = self.index, r.get("rerank_mode", "rerank"), r["rerank_top"]
+        if mode == "none":
+            return cands[:k]
+        n = r.get("rerank_candidates", 50)
+        rr = self.reranker.rerank(query, cands[:n], [c.text for c in idx.chunks], n)
+        if mode == "rerank+cite" and expanded and self.flags.c1:
+            ids = set(expanded)
+            cites = lambda i: bool(ids & (set(idx.chunks[i].section_ids) | set(idx.chunks[i].doc_section_ids)))
+            rr = sorted(rr, key=lambda x: not cites(x[0]))  # stable: keeps cross-encoder order within groups
+        elif mode == "fuse":
+            rr = rrf([[i for i, _ in cands[:n]], [i for i, _ in rr]], k=r.get("rrf_k", 60))
+        return rr[:k]
 
     # ------------------------------------------------------------------ step 7: C3
     def tag_chunk(self, chunk, targets: list[str], governing: list[str], td: TemporalDecision) -> tuple[str, str | None]:

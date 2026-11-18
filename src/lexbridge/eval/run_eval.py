@@ -54,7 +54,8 @@ def evaluate(system, questions: list[dict], store=None) -> dict:
         if q.get("gold_section"):
             row["code_correct"] = float(q["gold_section"] in (out.get("resolved_sections") or []))
         if gold and q["category"] in ("collision", "cross_code_precedent", "temporal"):
-            row.update(recall=M.recall_at_k(ranked, gold, K), mrr=M.mrr(ranked, gold), ndcg=M.ndcg_at_k(ranked, gold, K))
+            row.update(recall=M.recall_at_k(ranked, gold, K), prec=M.precision_at_k(ranked, gold, K),
+                       mrr=M.mrr(ranked, gold), ndcg=M.ndcg_at_k(ranked, gold, K))
             row["cit_p"], row["cit_r"] = M.citation_pr(out, gold)
         if q["category"] == "collision" and q.get("distractor_section"):
             row["answer_collision"] = answer_collision(out.get("answer", ""), _heading_tokens(store, q["gold_section"]),
@@ -77,7 +78,7 @@ def evaluate(system, questions: list[dict], store=None) -> dict:
         f"CER@{K}": m("cer", "collision"),
         "answer_collision": m("answer_collision", "collision"),
         "code_resolution_acc": m("code_correct"),
-        f"Recall@{K}": m("recall"), "MRR": m("mrr"), f"nDCG@{K}": m("ndcg"),
+        f"P@{K}": m("prec"), f"Recall@{K}": m("recall"), "MRR": m("mrr"), f"nDCG@{K}": m("ndcg"),
         "transfer_macroF1": M.macro_f1([r["gold_tag"] for r in tr], [r["pred_tag"] for r in tr]) if tr else None,
         "temporal_acc": m("temporal_correct"),
         "citation_P": m("cit_p"), "citation_R": m("cit_r"),
@@ -113,9 +114,10 @@ def main(argv=None):
     ap.add_argument("--limit", type=int, default=0, help="stratified subset of this many questions")
     ap.add_argument("--llm", default=None, help="force an LLM backend (mock|hf|ollama|openai)")
     ap.add_argument("--tag", default="", help="suffix for result files")
+    ap.add_argument("--split", default="all", choices=["all", "dev", "test"])
     a = ap.parse_args(argv)
     names = SYSTEMS if a.system == "all" else a.system.split(",")
-    qs = load_questions()
+    qs = [q for q in load_questions() if a.split == "all" or q.get("split", "test") == a.split]
     if a.limit:
         import sys
         from ..config import ROOT
