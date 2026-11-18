@@ -37,6 +37,6 @@ draft_transfer_gold:
   IPC_498A: DIRECTLY_APPLICABLE
   IPC_304B: DIRECTLY_APPLICABLE
   IPC_306: DIRECTLY_APPLICABLE
-  IPC_298: APPLICABLE_WITH_CAVEAT    # "simple imprisonment" in the fixture text
+  IPC_298: DIRECTLY_APPLICABLE       # official BNS 302 text matches IPC 298 (corrected after India Code check)
   IPC_124A: REVIEW_REQUIRED
   IPC_377: NOT_APPLICABLE

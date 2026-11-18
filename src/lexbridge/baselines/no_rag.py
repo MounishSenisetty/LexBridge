@@ -22,6 +22,11 @@ class NoRAG:
         ids = [f"IPC_{s}" for s in dict.fromkeys(secs)]
         parametric = [(s.split("_")[1], self.res.lexicon.raw.get(s, "")) for s in ids]
         body = self.llm.complete(NO_RAG_PROMPT.format(query=query), task="parametric", context={"parametric": parametric})
+        if getattr(self.llm, "name", "mock") != "mock":
+            # A real LLM may name a code; read it from the answer, falling back to the query.
+            claimed = {r.section: r.code for r in extract_sections(body) if r.code}
+            explicit = {r.section: r.code for r in extract_sections(query) if r.code}
+            ids = [f"{claimed.get(s) or explicit.get(s) or 'IPC'}_{s}" for s in dict.fromkeys(secs)]
         return {"answer": f"{body}\n{DISCLAIMER}", "citations": [], "cited_ids": [],
                 "applicability": [{"old": s, "new": None, "tag": "DIRECTLY_APPLICABLE"} for s in ids],
                 "governing_code": {"governing": "old" if ids else "both", "sections": ids},

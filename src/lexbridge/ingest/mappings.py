@@ -68,18 +68,62 @@ def _rows_to_mappings(rows: list[dict], source: str) -> list[SectionMapping]:
     return out
 
 
-def load_hf() -> list[SectionMapping]:
-    try:
-        from datasets import load_dataset
-    except ImportError:
-        logger.warning("`datasets` not installed; skipping HF mapping source")
+def parse_hf_records(records: list[dict]) -> tuple[list[SectionMapping], list[dict]]:
+    """``nandhakumarg/IPC_and_BNS_transformation`` rows: a ``response`` column holding a dict literal with
+    IPC Section/Heading/Descriptions and BNS Section/Heading/description. Returns (mappings, statute_texts)."""
+    import ast
+    maps, texts = [], []
+    for row in records:
+        r = row.get("response", row)
+        if isinstance(r, str):
+            try:
+                r = ast.literal_eval(r)
+            except (ValueError, SyntaxError):
+                continue
+        old = _norm_sec(r.get("IPC Section"))
+        if not old:
+            continue
+        raw_new = str(r.get("BNS Section") or "").strip()
+        repealed = bool(re.search(r"(?i)repeal|omitted|deleted", raw_new))
+        m = re.match(r"^(\d{1,3}[A-Z]?)\s*(.*)$", raw_new)
+        new = None if repealed or not m else normalize_section(m.group(1))
+        sub = "" if not m else m.group(2).strip()
+        maps.append(SectionMapping(
+            old_code="IPC", old_section=old, new_code="BNS" if new else None, new_section=new, new_subsection=sub,
+            title=str(r.get("IPC Heading") or "").strip(),
+            change_type=ChangeType.unknown if new else ChangeType.omitted,
+            notes=f"BNS heading: {str(r.get('BNS Heading') or '').strip()}" if new else "repealed in BNS",
+            sources=["hf"]))
+        texts.append({"code": "IPC", "section": old, "title": str(r.get("IPC Heading") or "").strip(),
+                      "text": str(r.get("IPC Descriptions") or "")})
+        if new and r.get("BNS description"):
+            texts.append({"code": "BNS", "section": new, "title": str(r.get("BNS Heading") or "").strip(),
+                          "text": str(r.get("BNS description") or "")})
+    return maps, texts
+
+
+def load_hf(raw_dir: Path | None = None, use_network: bool = True) -> list[SectionMapping]:
+    """Local copy first (data/raw/mappings/hf/*.csv), then ``datasets.load_dataset``."""
+    rows: list[dict] = []
+    files = sorted((raw_dir / "hf").glob("*.csv")) if raw_dir else []
+    if files:
+        import csv as _csv
+        for f in files:
+            with open(f, newline="", encoding="utf-8") as fh:
+                rows += list(_csv.DictReader(fh))
+    elif use_network:
+        try:
+            from datasets import load_dataset
+            rows = [dict(r) for r in load_dataset(HF_DATASET, split="train")]
+        except ImportError:
+            logger.warning("`datasets` not installed; skipping HF mapping source")
+        except Exception as e:  # network blocked, dataset moved, etc.
+            logger.warning(f"HF mapping download failed ({type(e).__name__}); skipping")
+    if not rows:
         return []
-    try:
-        ds = load_dataset(HF_DATASET, split="train")
-    except Exception as e:  # network blocked, dataset moved, etc.
-        logger.warning(f"HF mapping download failed ({type(e).__name__}); skipping")
-        return []
-    return _rows_to_mappings([dict(r) for r in ds], "hf")
+    maps, _ = parse_hf_records(rows)
+    logger.info(f"HF mappings: {len(maps)}")
+    return maps
 
 
 def load_ieee(raw_dir: Path) -> list[SectionMapping]:
@@ -111,6 +155,8 @@ def merge(sources: list[list[SectionMapping]]) -> tuple[list[SectionMapping], li
             cur = merged[key]
             if cur.new_section == m.new_section:
                 cur.sources = sorted(set(cur.sources) | set(m.sources))
+                if cur.change_type == ChangeType.unknown and m.change_type != ChangeType.unknown:
+                    cur.change_type = m.change_type
             else:
                 conflicts.append({"old_code": m.old_code, "old_section": m.old_section,
                                   "kept_new": cur.new_section, "kept_source": ",".join(cur.sources),
@@ -118,12 +164,11 @@ def merge(sources: list[list[SectionMapping]]) -> tuple[list[SectionMapping], li
     return list(merged.values()), conflicts
 
 
-def build_mappings(seed_path: Path, raw_dir: Path, use_network: bool = True):
-    sources = [load_seed(seed_path)]
-    if use_network:
-        sources.append(load_hf())
-    sources.append(load_ieee(raw_dir))
-    return merge(sources)
+def build_mappings(seed_path: Path, raw_dir: Path, use_network: bool = True, real: bool = False):
+    """real=False: seed first (unit tests). real=True: HF and IEEE first; the seed is only checked against them."""
+    seed = load_seed(seed_path)
+    others = [load_hf(raw_dir, use_network), load_ieee(raw_dir)]
+    return merge(others + [seed] if real else [seed] + others)
 
 
 def write_conflicts(conflicts: list[dict], path: Path) -> None:

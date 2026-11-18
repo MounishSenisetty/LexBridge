@@ -51,8 +51,8 @@ def classify(m: SectionMapping, statutes: StatuteStore, llm=None) -> TransferRes
     if llm is None:
         from ..generate.llm import get_llm
         llm = get_llm()
-    prompt = TRANSFER_PROMPT.format(old_code=m.old_code, old_section=m.old_section, old_text=old.text,
-                                    new_code=m.new_code, new_section=m.new_section, new_text=new.text,
+    prompt = TRANSFER_PROMPT.format(old_code=m.old_code, old_section=m.old_section, old_text=old.text[:900],
+                                    new_code=m.new_code, new_section=m.new_section, new_text=new.text[:1200],
                                     labels=", ".join(sorted(VALID - {"new", "unknown"})))
     out = llm.complete_json(prompt, system=TRANSFER_SYSTEM, task="transferability", context={"diff": asdict(d)})
     label = out.get("label", "unknown")
@@ -61,17 +61,42 @@ def classify(m: SectionMapping, statutes: StatuteStore, llm=None) -> TransferRes
 
 
 def classify_all(mappings: list[SectionMapping], statutes: StatuteStore, llm=None,
-                 cache: Path | None = None) -> dict[str, TransferResult]:
+                 cache: Path | None = None, rules_only: bool = False) -> dict[str, TransferResult]:
+    """Resumable: cached results are reused and new ones appended as they are computed.
+    ``rules_only`` leaves mappings that need the LLM as ``unknown`` (method ``pending``) without caching them."""
     cached: dict[str, TransferResult] = {}
     if cache and cache.exists():
         for line in cache.read_text().splitlines():
             if line.strip():
                 r = TransferResult(**json.loads(line))
                 cached[r.old_id] = r
-    out = {}
-    for m in mappings:
-        out[m.old_id] = cached.get(m.old_id) or classify(m, statutes, llm)
     if cache:
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text("".join(json.dumps(asdict(r)) + "\n" for r in out.values()))
+        if not cache.exists():
+            cache.write_text("")
+    out = {}
+
+    class _Pending:
+        name = "pending"
+
+        def complete_json(self, *a, **k):
+            raise _NeedLLM
+
+    for m in mappings:
+        if m.old_id in cached:
+            out[m.old_id] = cached[m.old_id]
+            continue
+        try:
+            r = classify(m, statutes, _Pending() if rules_only else llm)
+        except _NeedLLM:
+            out[m.old_id] = _result(m, "unknown", [], "awaiting LLM transferability run", "pending")
+            continue
+        out[m.old_id] = r
+        if cache:
+            with open(cache, "a") as f:
+                f.write(json.dumps(asdict(r)) + "\n")
     return out
+
+
+class _NeedLLM(Exception):
+    pass

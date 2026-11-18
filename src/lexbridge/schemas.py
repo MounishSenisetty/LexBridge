@@ -75,11 +75,13 @@ class SectionMapping(BaseModel):
     old_section: str
     new_code: Optional[Code] = None
     new_section: Optional[str] = None  # None => omitted
+    new_subsection: str = ""           # e.g. "(4)" for IPC 420 → BNS 318(4)
     title: str = ""
     change_type: ChangeType = ChangeType.unknown
     notes: str = ""
     sources: list[str] = Field(default_factory=list)
-    verified: bool = False
+    verified: bool = False             # human-verified against the bare acts
+    auto_check: str = "unchecked"      # consistent | suspect | unchecked (automatic, see verify_mappings.py)
 
     @property
     def old_id(self) -> str:

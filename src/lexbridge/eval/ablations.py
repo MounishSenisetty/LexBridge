@@ -32,19 +32,55 @@ def latex_table(results: dict, caption: str, label: str, names=None, pretty=None
     return "\n".join(lines)
 
 
+GEN_COLS = [("answer_collision", "Ans.~collision$\\downarrow$"), ("code_resolution_acc", "Code acc"),
+            ("temporal_acc", "Temporal acc"), ("citation_P", "Cit.~P"), ("citation_R", "Cit.~R"),
+            ("faithfulness", "Faith.")]
+
+
+def gen_table(results_dir, out_path, n: int, llm: str) -> str:
+    import json
+    rows = []
+    for name in SYSTEMS:
+        p = results_dir / f"{name}_gen.json"
+        if p.exists():
+            rows.append((name, json.loads(p.read_text())["summary"]))
+    lines = [NOTE.replace("Fixture corpus + deterministic mock LLM", f"Real corpus + {llm}"), "\\begin{table}[t]",
+             "\\centering\\small", f"\\begin{{tabular}}{{l{'c' * len(GEN_COLS)}}}", "\\toprule",
+             "System & " + " & ".join(h for _, h in GEN_COLS) + " \\\\", "\\midrule"]
+    for name, s in rows:
+        lines.append(f"{PRETTY.get(name, name)} & " + " & ".join(fmt(s.get(k)) for k, _ in GEN_COLS) + " \\\\")
+    lines += ["\\bottomrule", "\\end{tabular}", f"\\caption{{Generation with {llm} ($n={n}$ stratified questions).}}",
+              "\\label{tab:gen}", "\\end{table}", ""]
+    out_path.write_text("\n".join(lines))
+    return out_path.read_text()
+
+
 def main():
+    import sys
+    if "--gen-table" in sys.argv:
+        cfg = get_config()
+        n = int(sys.argv[sys.argv.index("--gen-table") + 1])
+        llm = sys.argv[sys.argv.index("--gen-table") + 2] if len(sys.argv) > sys.argv.index("--gen-table") + 2 else "LLM"
+        cfg.path("tables").mkdir(parents=True, exist_ok=True)
+        print(gen_table(cfg.path("results"), cfg.path("tables") / "generation.tex", n, llm))
+        return
     res = load_resources()
     qs = load_questions()
     tables = get_config().path("tables")
     tables.mkdir(parents=True, exist_ok=True)
     main_res = run(SYSTEMS, qs, res)
     n = len(qs)
+    real = not get_config().get("sample_mode", True)
+    what = "real eCourts corpus, silver labels, extractive generator" if real else "fixture corpus, mock LLM; not research results"
+    note = NOTE if not real else NOTE.replace("Fixture corpus + deterministic mock LLM:\n% these numbers check that the pipeline runs; they are NOT research results.",
+                                              "Real corpus (eCourts via overthelex), silver relevance labels, extractive generator.")
     (tables / "main.tex").write_text(latex_table(
-        main_res, f"Main results on the LexBridge-QA draft sample ($n={n}$, fixture corpus, mock LLM; not research results).",
-        "tab:main", SYSTEMS, PRETTY))
+        main_res, f"Retrieval results on LexBridge-QA ($n={n}$, {what}).", "tab:main", SYSTEMS, PRETTY).replace(NOTE, note))
     abl = run(list(ABLATIONS), qs, res, write=False)
     (tables / "ablation.tex").write_text(latex_table(
-        abl, f"Ablations of LexBridge components ($n={n}$, fixture corpus, mock LLM).", "tab:ablation"))
+        abl, f"Ablations of LexBridge components ($n={n}$, {what}).", "tab:ablation").replace(NOTE, note))
+    import json
+    (get_config().path("results") / "ablations.json").write_text(json.dumps({k: v["summary"] for k, v in abl.items()}, indent=2))
     for name, r in {**main_res, **abl}.items():
         print(f"{name:<24}", " ".join(f"{k}={fmt(r['summary'].get(k))}" for k, _ in MAIN_COLS))
     print(f"wrote {tables/'main.tex'} and {tables/'ablation.tex'}")

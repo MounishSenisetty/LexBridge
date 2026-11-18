@@ -62,7 +62,13 @@ class Resources:
                 chunks = chunk_corpus(self.judgments, resolver, ch["size"], ch["overlap"], True)
             else:
                 chunks = chunk_corpus(self.judgments, self.resolver, ch["size"], ch["overlap"], variant != "naive")
+            emb = make_embedder(cfg)
+            cache = cfg.path("processed") / "embedding_cache.pkl"
+            if hasattr(emb, "load_cache") and not emb.cache:
+                emb.load_cache(cache)
             self.indexes[variant] = Index.build(chunks, cfg)
+            if hasattr(emb, "save_cache"):
+                emb.save_cache(cache)
         return self.indexes[variant]
 
 
@@ -74,12 +80,35 @@ class _NoResolver(CodeResolver):
 def ingest(out_dir: Path, use_network: bool = True) -> tuple[list, list, list, list]:
     cfg = get_config()
     raw, seed, fx = cfg.path("raw"), cfg.path("seed"), cfg.path("fixtures")
-    statutes = load_statutes([raw / "statutes", fx / "statutes"])
-    mappings, conflicts = M.build_mappings(seed / "seed_mappings.csv", raw / "mappings",
-                                           use_network=use_network and not cfg.get("sample_mode", True))
+    real = not cfg.get("sample_mode", True)
     limit = cfg["sample_sizes"]["judgments"]
-    judgments = J.load_ildc(raw / "ildc", limit) + J.load_folder(raw / "judgments", limit)
-    judgments = judgments[:limit] + J.load_jsonl_judgments(fx / "judgments.jsonl")
+    if real:
+        # Official India Code text first; HF dataset texts only fill sections India Code lacks.
+        from .ingest.mappings import parse_hf_records
+        hf_rows = []
+        for f in sorted((raw / "mappings" / "hf").glob("*.csv")):
+            import csv as _csv
+            with open(f, newline="", encoding="utf-8") as fh:
+                hf_rows += list(_csv.DictReader(fh))
+        _, hf_texts = parse_hf_records(hf_rows) if hf_rows else ([], [])
+        extra = [StatuteSection(code=t["code"], section=t["section"], title=t["title"],
+                                text=" ".join(t["text"].split()), source="hf", verified=False) for t in hf_texts]
+        statutes = load_statutes([raw / "statutes"], extra)
+        mappings, conflicts = M.build_mappings(seed / "seed_mappings.csv", raw / "mappings", use_network, real=True)
+        judgments = (J.load_parquet_judgments(raw / "judgments" / "overthelex", "ECRT", limit)
+                     + J.load_parquet_judgments(raw / "ildc" / "iltur", "ILDC", limit)
+                     + J.load_parquet_judgments(raw / "judgments" / "injudgements", "INJ", limit)
+                     + J.load_ildc(raw / "ildc", limit) + J.load_folder(raw / "judgments", limit))
+        judgments = list({j.doc_id: j for j in judgments}.values())[:limit]
+        from .ingest.verify_mappings import check, write_report
+        rows = check(mappings, StatuteStore(statutes))
+        write_report(rows, out_dir / "mapping_verification.csv")
+        n = {k: sum(r["status"] == k for r in rows) for k in ("consistent", "suspect", "unchecked")}
+        logger.info(f"mapping auto-check: {n}")
+    else:
+        statutes = load_statutes([fx / "statutes"])  # sample mode: fixtures only, reproducible
+        mappings, conflicts = M.merge([M.load_seed(seed / "seed_mappings.csv")])  # seed only: reproducible
+        judgments = J.load_jsonl_judgments(fx / "judgments.jsonl")
     out_dir.mkdir(parents=True, exist_ok=True)
     save_jsonl(statutes, out_dir / "statutes.jsonl")
     save_jsonl(mappings, out_dir / "mappings.jsonl")
@@ -103,7 +132,9 @@ def load_resources(build: bool = False, out_dir: Path | None = None, use_network
     store = StatuteStore(statutes)
     lexicon = HeadingLexicon.build(statutes, mappings)
     resolver = CodeResolver(lexicon, cfg.transition)
-    transfer = classify_all(mappings, store, cache=out_dir / "transferability.jsonl")
+    import os
+    rules_only = os.environ.get("LEXBRIDGE_TRANSFER", "") == "rules"
+    transfer = classify_all(mappings, store, cache=out_dir / "transferability.jsonl", rules_only=rules_only)
     res = Resources(statutes, store, mappings, M.MappingTable(mappings), judgments, lexicon, resolver,
                     transfer, graph=None, conflicts=conflicts)
     idx_path, g_path = out_dir / "index.pkl", out_dir / "graph.gpickle"

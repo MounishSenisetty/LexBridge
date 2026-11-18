@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from datetime import date
 
+from ..config import get_config
 from ..generate.llm import get_llm
 from ..generate.prompts import BASELINE_PROMPT, BASELINE_SYSTEM, DISCLAIMER
 from ..generate.temporal_gate import family_of
@@ -49,7 +50,9 @@ class RAGBaseline:
                  "text": chunks[i].text, "section_ids": chunks[i].section_ids or chunks[i].doc_section_ids,
                  "tag": None, "score": round(s, 4)} for i, s in top]
         ctx = {"query": query, "statutes": [], "chunks": [{"chunk_id": c["id"], "text": c["text"]} for c in cits]}
-        prompt = BASELINE_PROMPT.format(query=query, chunks="\n".join(f"[{c['id']}] {c['text']}" for c in cits))
+        pw = int(get_config().get("llm", {}).get("prompt_chunk_words", 400))
+        prompt = BASELINE_PROMPT.format(query=query, chunks="\n".join(
+            f"[{c['id']}] {' '.join(c['text'].split()[:pw])}" for c in cits))
         body = self.llm.complete(prompt, system=BASELINE_SYSTEM, task="answer", context=ctx)
         _, faith = verify(body, {c["id"]: c["text"] for c in cits})
         secs = self.predicted_sections(query, top)

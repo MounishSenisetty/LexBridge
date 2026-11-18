@@ -60,6 +60,29 @@ class OpenAICompatLLM(BaseLLM):  # pragma: no cover - needs an API
         return r["choices"][0]["message"]["content"]
 
 
+class HFLocalLLM(BaseLLM):  # pragma: no cover - needs model weights
+    """Local CPU generation with transformers (e.g. Qwen2.5-1.5B-Instruct). Greedy decoding."""
+
+    def __init__(self, model: str, max_new_tokens: int = 400):
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        torch.set_num_threads(max(1, os.cpu_count() or 1))
+        self.tok = AutoTokenizer.from_pretrained(model)
+        self.model = AutoModelForCausalLM.from_pretrained(model, dtype=torch.bfloat16)
+        self.model.eval()
+        self.max_new_tokens, self.name = max_new_tokens, f"hf:{model}"
+
+    def complete(self, prompt, *, system="", task="answer", context=None):
+        import torch
+        msgs = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+        enc = self.tok.apply_chat_template(msgs, add_generation_prompt=True, return_tensors="pt", return_dict=True)
+        limit = 160 if task in ("transferability", "verify") else self.max_new_tokens
+        with torch.inference_mode():
+            out = self.model.generate(**enc, max_new_tokens=limit, do_sample=False,
+                                      pad_token_id=self.tok.eos_token_id)
+        return self.tok.decode(out[0, enc["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+
+
 class MockLLM(BaseLLM):
     """Deterministic stand-in. Extractive: it only ever repeats text from the context it is given."""
     name = "mock"
@@ -156,6 +179,11 @@ def get_llm(backend: str | None = None) -> BaseLLM:
             llm = OllamaLLM(cfg.get("ollama_model"), cfg.get("ollama_url"), cfg.get("temperature", 0.0))
         except Exception:
             llm = None
+    if llm is None and backend in ("auto", "hf") and cfg.get("hf_model"):
+        try:
+            llm = HFLocalLLM(cfg["hf_model"], cfg.get("max_tokens", 400))
+        except Exception as e:  # pragma: no cover
+            logger.warning(f"local HF model unavailable ({type(e).__name__}: {e})")
     if llm is None:
         logger.info("LLM backend: deterministic MockLLM")
         llm = MockLLM()

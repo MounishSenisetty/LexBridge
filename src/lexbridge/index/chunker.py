@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from ..ingest.judgments import paragraphs
 from ..nlp.code_resolver import CodeResolver
-from ..nlp.rhetorical_roles import tag_paragraph
+from ..nlp.role_classifier import tag_paragraph_learned as tag_paragraph
 from ..schemas import Chunk, Judgment
 
 

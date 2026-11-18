@@ -29,25 +29,59 @@ class TfidfEmbedder:
 
 
 class STEmbedder:  # pragma: no cover - needs model download
+    """sentence-transformers model with an in-memory cache keyed by text (index variants share most chunks)."""
+    _models: dict = {}
+
     def __init__(self, model_name: str):
         from sentence_transformers import SentenceTransformer
-        self.model = SentenceTransformer(model_name, device="cpu")
+        if model_name not in STEmbedder._models:
+            STEmbedder._models[model_name] = SentenceTransformer(model_name, device="cpu")
+        self.model = STEmbedder._models[model_name]
         self.name = model_name
+        self.cache: dict[str, np.ndarray] = {}
+
+    def __getstate__(self):  # pickle the name + cache, not the torch model
+        return {"name": self.name, "cache": self.cache}
+
+    def __setstate__(self, st):
+        self.__init__(st["name"])
+        self.cache = st["cache"]
 
     def fit(self, texts):
         return self
 
+    def load_cache(self, path):
+        import pickle
+        from pathlib import Path
+        if Path(path).exists():
+            self.cache.update(pickle.load(open(path, "rb")))
+
+    def save_cache(self, path):
+        import pickle
+        pickle.dump(self.cache, open(path, "wb"))
+
     def encode(self, texts):
-        return np.asarray(self.model.encode(texts, normalize_embeddings=True, batch_size=16), dtype=np.float32)
+        todo = list(dict.fromkeys(t for t in texts if t not in self.cache))
+        if todo:
+            vecs = self.model.encode(todo, normalize_embeddings=True, batch_size=32, show_progress_bar=len(todo) > 500)
+            self.cache.update(zip(todo, np.asarray(vecs, dtype=np.float32)))
+        return np.stack([self.cache[t] for t in texts]) if texts else np.zeros((0, 1), np.float32)
+
+
+_EMBEDDERS: dict = {}
 
 
 def make_embedder(cfg) -> object:
     models = cfg.get("models", {})
+    key = (models.get("offline", True), models.get("embedder"))
+    if key in _EMBEDDERS and not models.get("offline", True):
+        return _EMBEDDERS[key]
     if not models.get("offline", True):
         for name in (models.get("embedder"), models.get("embedder_fallback")):
             try:
                 emb = STEmbedder(name)
                 logger.info(f"dense embedder: {name}")
+                _EMBEDDERS[key] = emb
                 return emb
             except Exception as e:  # pragma: no cover
                 logger.warning(f"could not load {name}: {type(e).__name__}")

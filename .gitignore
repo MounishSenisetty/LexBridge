@@ -11,3 +11,7 @@ results/*.json
 paper/*.aux
 paper/*.log
 paper/*.pdf
+data/processed_real/
+results/real/logs/
+results_real_run.log
+*.extracted.txt

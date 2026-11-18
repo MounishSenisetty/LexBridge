@@ -36,7 +36,7 @@ J = [
  ("FX-006", "Imran v. State (synthetic)", "Magistrate Court (synthetic)", "2025-03-20", [
   f"{N} The accused is charged under Section 302 of the Bharatiya Nyaya Sanhita, 2023 for uttering words with deliberate intent to wound the religious feelings of the complainant.",
   "Facts: On 10 October 2024 the accused allegedly made a gesture in front of a place of worship to wound religious feelings.",
-  "Analysis: Section 302 BNS punishes deliberate intent to wound religious feelings with simple imprisonment up to one year, or fine, or both.",
+  "Analysis: Section 302 BNS punishes deliberate intent to wound religious feelings with imprisonment of either description up to one year, or fine, or both.",
   "Held: Charge under Section 302 BNS is framed for wounding religious feelings."]),
  ("FX-007", "Meera v. State (synthetic)", "High Court (synthetic)", "2025-07-01", [
   f"{N} The petitioner seeks quashing of an FIR registered under Section 302 for wounding religious feelings by a video.",

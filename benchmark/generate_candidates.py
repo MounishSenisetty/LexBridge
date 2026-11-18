@@ -99,6 +99,104 @@ def build(res, tpl: dict) -> list[dict]:
     return items
 
 
+def silver_docs(res) -> dict[str, set[str]]:
+    """section_id -> judgments that cite it WITH an explicit code ("Section 302 IPC"). Weak labels: they do
+    not depend on the resolver's inference rules, but they are not human relevance judgements."""
+    from lexbridge.nlp.section_ner import extract_sections
+    out: dict[str, set[str]] = {}
+    for j in res.judgments:
+        for r in extract_sections(j.text):
+            if r.code:
+                out.setdefault(f"{r.code}_{r.section}", set()).add(j.doc_id)
+    return out
+
+
+def build_real(res, tpl: dict, per_cat: int = 125, min_docs: int = 3, seed: int = 13) -> list[dict]:
+    import random
+    from lexbridge.ingest.verify_mappings import heading_sim
+    rnd = random.Random(seed)
+    transition = get_config().transition
+    silver = silver_docs(res)
+
+    def docs(*ids):
+        return sorted(set().union(*(silver.get(i, set()) for i in ids if i)))
+
+    def low(t):
+        return t.strip().rstrip(".").lower() or "this offence"
+
+    items: list[dict] = []
+
+    def add(cat, tid, q, **gold):
+        items.append({"qid": f"{cat[:3].upper()}-{len(items) + 1:04d}", "category": cat, "template_id": tid,
+                      "question": q, "status": "draft", "labels": "silver", **gold})
+
+    store = res.store.by_id
+    good = [m for m in res.mappings if m.auto_check == "consistent"]
+    # --- collision: same number in IPC and BNS, unrelated official headings, both cited in the corpus
+    pairs = []
+    for sid, s in store.items():
+        if s.code != "IPC" or f"BNS_{s.section}" not in store:
+            continue
+        b = store[f"BNS_{s.section}"]
+        if heading_sim(s.title, b.title) < 0.3 and len(silver.get(sid, ())) >= min_docs and len(silver.get(b.id, ())) >= min_docs:
+            pairs.append(s.section)
+    rnd.shuffle(pairs)
+    col = []
+    for num in pairs:
+        for code, other in (("BNS", "IPC"), ("IPC", "BNS")):
+            sid, distract = f"{code}_{num}", f"{other}_{num}"
+            cps = res.table.counterparts(sid)
+            t_i = rnd.randrange(len(tpl["collision"]))
+            col.append(("collision", f"collision.{t_i}",
+                        tpl["collision"][t_i].format(num=num, code=code, code_long=tpl["code_long"][code]),
+                        dict(gold_section=sid, distractor_section=distract, gold_docs=docs(sid, *cps),
+                             distractor_docs=sorted(set(silver.get(distract, set())) - set(docs(sid, *cps))),
+                             gold_governing=None, offence_date=None)))
+        for d in (rnd.choice(tpl["dates_before"]), rnd.choice(tpl["dates_after"])):
+            dd = extract_dates(d)[0].value
+            fam_code, other = ("IPC", "BNS") if dd < transition else ("BNS", "IPC")
+            sid = f"{fam_code}_{num}"
+            col.append(("collision", "collision_implicit.0", tpl["collision_implicit"][0].format(num=num, date=d),
+                        dict(gold_section=sid, distractor_section=f"{other}_{num}",
+                             gold_docs=docs(sid, *res.table.counterparts(sid)),
+                             distractor_docs=sorted(silver.get(f"{other}_{num}", set()) - set(docs(sid, *res.table.counterparts(sid)))),
+                             gold_governing="old" if dd < transition else "new", offence_date=dd.isoformat())))
+    for c in col[:per_cat]:
+        add(c[0], c[1], c[2], **c[3])
+
+    # --- cross-code precedent: BNS question; the IPC-era precedent must be found through the mapping
+    cc = [m for m in good if m.new_id and len(silver.get(m.old_id, ())) >= min_docs]
+    rnd.shuffle(cc)
+    for m in cc[:per_cat]:
+        t_i = rnd.randrange(len(tpl["cross_code_precedent"]))
+        title = store[m.new_id].title if m.new_id in store else m.title
+        add("cross_code_precedent", f"cross_code_precedent.{t_i}",
+            tpl["cross_code_precedent"][t_i].format(new=m.new_section, title=low(title)),
+            gold_section=m.new_id, gold_docs=docs(m.new_id, m.old_id), gold_governing=None, offence_date=None)
+
+    # --- temporal: the date decides the governing provision
+    tm = [m for m in good if m.new_id and len(silver.get(m.old_id, ())) + len(silver.get(m.new_id, ())) >= min_docs]
+    rnd.shuffle(tm)
+    for k, m in enumerate(tm[:per_cat]):
+        d = rnd.choice(tpl["dates_before"] if k % 2 == 0 else tpl["dates_after"])
+        dd = extract_dates(d)[0].value
+        fam = "old" if dd < transition else "new"
+        t_i = k % len(tpl["temporal"])
+        title = store[m.old_id].title if m.old_id in store else m.title
+        add("temporal", f"temporal.{t_i}", tpl["temporal"][t_i].format(old=m.old_section, title=low(title), date=d),
+            gold_section=m.old_id if t_i == 1 else None, gold_governing=fam,
+            gold_governing_sections=[m.old_id if fam == "old" else m.new_id],
+            gold_docs=docs(m.old_id, m.new_id), offence_date=dd.isoformat())
+
+    # --- transfer: gold tags need annotators; left empty (not scored) until annotated
+    tr = [m for m in good if len(silver.get(m.old_id, ())) >= 1]
+    rnd.shuffle(tr)
+    for m in tr[:per_cat]:
+        add("transfer", "transfer.0", tpl["transfer"][0].format(old=m.old_section), gold_section=m.old_id,
+            gold_tag=None, gold_docs=docs(m.old_id, m.new_id), gold_governing=None, offence_date=None)
+    return items
+
+
 def stratified(items: list[dict], n: int) -> list[dict]:
     by: dict[str, list[dict]] = {}
     for it in items:
@@ -118,7 +216,8 @@ def main(argv=None):
     ap.add_argument("--out", default=str(get_config().path("benchmark")))
     a = ap.parse_args(argv)
     tpl = yaml.safe_load(open(ROOT / "benchmark" / "templates.yaml"))
-    items = build(load_resources(), tpl)
+    real = not get_config().get("sample_mode", True)
+    items = build_real(load_resources(), tpl, per_cat=a.n // 4 + 1) if real else build(load_resources(), tpl)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "candidates.jsonl").write_text("".join(json.dumps(i) + "\n" for i in items))

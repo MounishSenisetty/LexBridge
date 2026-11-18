@@ -60,6 +60,8 @@ class LexBridge:
         if not self.flags.c1:
             variant = "noresolver" if self.flags.role_aware else "naive"
         self.index = res.index(variant)
+        self._pw = int(self.cfg.get("llm", {}).get("prompt_chunk_words", 400))
+        self._judge = self.llm if self.cfg.get("llm", {}).get("verifier_llm", True) else None
 
     # ------------------------------------------------------------------ step 1: C1
     def resolve_query(self, query: str, offence_date: date | None) -> list[str]:
@@ -183,23 +185,23 @@ class LexBridge:
                    "keywords": keywords}
         prompt = ANSWER_PROMPT.format(
             query=query, governing=td.note or td.governing,
-            statutes="\n".join(f"[{s.code} §{s.section}] {s.title}: {s.text}" for s in statutes) or "(none)",
-            chunks="\n".join(f"[{c['chunk_id']}] ({c['tag']}) {c['text']}" for c in ctx_chunks) or "(none)")
+            statutes="\n".join(f"[{s.code} §{s.section}] {s.title}: {_trim(s.text, 3 * self._pw)}" for s in statutes) or "(none)",
+            chunks="\n".join(f"[{c['chunk_id']}] ({c['tag']}) {_trim(c['text'], self._pw)}" for c in ctx_chunks) or "(none)")
         body = self.llm.complete(prompt, system=ANSWER_SYSTEM, task="answer", context=context)
 
         evidence = {c["id"]: c["text"] for c in citations}
         evidence.update({f"{s.code} §{s.section}": f"{s.title} {s.text}" for s in statutes})
-        checks, faith = verify(body, evidence, self.llm)  # always measured; only acted on with the verifier
+        checks, faith = verify(body, evidence, self._judge)  # always measured; only acted on with the verifier
         if self.flags.verifier:
             bad = [c.claim for c in checks if not c.supported]
             if bad:  # regenerate once, then drop anything still unsupported
                 body = self.llm.complete(prompt + REGENERATE_NOTE.format(claims="; ".join(bad)),
                                          system=ANSWER_SYSTEM, task="answer", context=context)
-                checks, faith = verify(body, evidence, self.llm)
+                checks, faith = verify(body, evidence, self._judge)
                 bad = {c.claim for c in checks if not c.supported}
                 if bad:
                     body = "\n".join(l for l in body.splitlines() if l.strip() not in bad)
-                    checks, faith = verify(body, evidence, self.llm)
+                    checks, faith = verify(body, evidence, self._judge)
 
         answer = "\n".join(filter(None, [self._header(targets, governing, td), body, self._dual(governing), DISCLAIMER]))
         cited = [c for c in citations if f"[{c['id']}]" in answer]
@@ -229,6 +231,11 @@ class LexBridge:
                 if pair not in pairs:
                     pairs.append(pair)
         return ("Dual citation: " + "; ".join(pairs)) if pairs else ""
+
+
+def _trim(text: str, words: int) -> str:
+    w = text.split()
+    return text if len(w) <= words else " ".join(w[:words]) + " …"
 
 
 def main(argv: list[str] | None = None) -> None:
