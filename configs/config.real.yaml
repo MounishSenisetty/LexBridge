@@ -1,0 +1,54 @@
+# Real-data profile: LEXBRIDGE_CONFIG=configs/config.real.yaml
+paths:
+  raw: data/raw
+  processed: data/processed_real
+  seed: data/seed
+  fixtures: data/seed/fixtures
+  benchmark: data/benchmark_real
+  results: results/real
+  tables: paper/tables/real
+
+# sample_mode=true uses only seed + fixture data (no downloads).
+sample_mode: false
+sample_sizes:
+  judgments: 3000     # criminal judgments taken from the real corpora
+  questions: 500
+
+transition_date: "2024-07-01"
+
+models:
+  # bge-m3 / bge-reranker-v2-m3 measured at 0.9 chunks/s and 0.7 pairs/s on this 4-core CPU (~5 h per pass):
+  # the plan's fallbacks are primary here. Swap back on a GPU.
+  embedder: sentence-transformers/all-MiniLM-L6-v2
+  embedder_fallback: sentence-transformers/all-MiniLM-L6-v2
+  reranker: cross-encoder/ms-marco-MiniLM-L-6-v2
+  reranker_fallback: cross-encoder/ms-marco-MiniLM-L-6-v2
+  # Set to false to try downloading real models; true forces built-in CPU fallbacks.
+  offline: false
+
+chunking:
+  size: 200        # words (MiniLM reads 256 word-pieces)
+  overlap: 30
+
+retrieval:
+  bm25_k: 30
+  dense_k: 30
+  rrf_k: 60
+  graph_k: 20
+  rerank_top: 8
+  per_doc: 2           # max chunks per judgment in the context (all RAG systems)
+  rerank_candidates: 20
+  rerank_mode: none    # rerank | none | rerank+cite | fuse. Chosen on the dev split: the general-domain
+                       # ms-marco cross-encoder cut dev P@5 from 0.664 to 0.346 (results/real/rerank_study_dev.json)
+
+vector_store: numpy   # qdrant | faiss | numpy
+
+llm:
+  backend: auto       # auto | ollama | openai | hf | mock
+  ollama_model: qwen2.5:7b-instruct
+  ollama_url: http://localhost:11434
+  temperature: 0.0
+  max_tokens: 180
+  prompt_chunk_words: 120
+  verifier_llm: false   # lexical claim check (an LLM judge per claim is ~5 s each on CPU)
+  hf_model: Qwen/Qwen2.5-1.5B-Instruct   # local CPU LLM via transformers when no Ollama/API

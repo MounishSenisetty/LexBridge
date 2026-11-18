@@ -1,0 +1,58 @@
+{
+  "train_sentences": 30729,
+  "test_sentences": 2602,
+  "label_dist_test": {
+    "facts": 557,
+    "analysis": 1491,
+    "decision": 119,
+    "arguments": 150,
+    "statute": 285
+  },
+  "macroF1_rules": 0.1155,
+  "macroF1_learned": 0.669,
+  "report_learned": {
+    "analysis": {
+      "precision": 0.803314121037464,
+      "recall": 0.7478202548625084,
+      "f1-score": 0.774574505036471,
+      "support": 1491.0
+    },
+    "arguments": {
+      "precision": 0.5833333333333334,
+      "recall": 0.7466666666666667,
+      "f1-score": 0.6549707602339181,
+      "support": 150.0
+    },
+    "decision": {
+      "precision": 0.7560975609756098,
+      "recall": 0.5210084033613446,
+      "f1-score": 0.6169154228855721,
+      "support": 119.0
+    },
+    "facts": {
+      "precision": 0.5936555891238671,
+      "recall": 0.7055655296229802,
+      "f1-score": 0.6447908121410992,
+      "support": 557.0
+    },
+    "statute": {
+      "precision": 0.6618705035971223,
+      "recall": 0.6456140350877193,
+      "f1-score": 0.6536412078152753,
+      "support": 285.0
+    },
+    "accuracy": 0.717140661029977,
+    "macro avg": {
+      "precision": 0.6796542216134793,
+      "recall": 0.6733349779202438,
+      "f1-score": 0.6689785416224672,
+      "support": 2602.0
+    },
+    "weighted avg": {
+      "precision": 0.7281000080284897,
+      "recall": 0.717140661029977,
+      "f1-score": 0.719440954249729,
+      "support": 2602.0
+    }
+  }
+}

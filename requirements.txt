@@ -1,0 +1,24 @@
+# Core (CPU-safe; everything below runs on fixtures with no downloads)
+pydantic>=2
+pyyaml
+numpy
+networkx
+rank_bm25
+loguru
+scikit-learn
+# API / UI
+fastapi
+uvicorn
+httpx
+streamlit
+requests
+# Tests
+pytest
+# Optional (real models / real data) — install when available:
+# sentence-transformers   # bge-m3 / MiniLM embeddings, bge-reranker cross-encoder
+# faiss-cpu               # vector index
+# qdrant-client           # vector DB, local mode
+# datasets                # HF mapping dataset
+# openpyxl pandas         # IEEE xlsx mapping
+# pypdf                   # India Code statute PDFs
+# ragas                   # faithfulness / relevancy

@@ -1,0 +1,15 @@
+% AUTO-GENERATED: real corpus, test split, Qwen2.5-1.5B-Instruct (CPU); only the LLM-written text is scored
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lccccc}
+\toprule
+System & Offence hit & on collision & Grounded & Code acc & Temporal acc \\
+\midrule
+No-RAG & 0.267 & 0.000 & -- & 0.820 & 0.233 \\
+Hybrid-RAG & 0.400 & 0.050 & 0.610 & 0.940 & 0.233 \\
+\textbf{LexBridge} & 0.767 & 0.700 & 0.607 & 1.000 & 1.000 \\
+\bottomrule
+\end{tabular}
+\caption{Generation on the test split ($n=60$: collision, cross-code, temporal). Offence hit: the answer names the gold offence. LexBridge vs.\ hybrid: $\Delta$ +0.367 [+0.250, +0.500], $p$=0.0.}
+\label{tab:gen}
+\end{table}

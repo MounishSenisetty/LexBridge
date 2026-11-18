@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lexbridge"
+version = "0.1.0"
+description = "Code-aware cross-code legal RAG for the IPC→BNS transition (India)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2",
+  "pyyaml",
+  "numpy",
+  "networkx",
+  "rank_bm25",
+  "loguru",
+  "scikit-learn",
+]
+
+[project.optional-dependencies]
+api = ["fastapi", "uvicorn", "httpx"]
+ui = ["streamlit", "requests"]
+ml = ["sentence-transformers", "faiss-cpu", "qdrant-client"]
+data = ["datasets", "openpyxl", "pandas", "pypdf"]
+eval = ["ragas"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

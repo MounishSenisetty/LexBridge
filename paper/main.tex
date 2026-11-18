@@ -1,0 +1,83 @@
+% LexBridge — ACL-style skeleton. Compile with the ACL style files (acl.sty) placed next to this file.
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times,latexsym,booktabs,amsmath}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\title{LexBridge: Code-Aware Cross-Code Retrieval for India's Criminal Law Transition}
+\author{Anonymous submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+On 1 July 2024 India replaced the Indian Penal Code (IPC), Code of Criminal Procedure and Evidence Act with
+the Bharatiya Nyaya Sanhita (BNS), Bharatiya Nagarik Suraksha Sanhita and Bharatiya Sakshya Adhiniyam.
+Questions are now asked in BNS terms while precedent cites the IPC, and identical section numbers denote
+different offences across codes (IPC~302 is murder; BNS~302 is wounding religious feelings).
+We present LexBridge, a retrieval-augmented QA system with (C1) a code-aware section resolver, (C2) cross-code
+graph retrieval, (C3) precedent transferability scoring, (C4) a temporal applicability gate, and (C5)
+LexBridge-QA, a benchmark targeting these failure modes. % TODO: headline numbers on the annotated benchmark.
+\end{abstract}
+
+\section{Introduction}
+% Motivation: the transition; four failure modes of plain RAG (collision, cross-code gap, transferability, temporal).
+% Contributions C1--C5.
+
+\section{Related Work}
+% Legal IR / RAG (COLIEE, AILA, ILDC/CJPE), statute retrieval, legal NER, temporal reasoning in law,
+% legislative change and versioned statutes, hallucination and citation verification in legal LLMs.
+
+\section{Problem Formulation}
+% Codes, sections, mapping M: old -> new ∪ {⊥}; change types; applicability tags; governing code by offence date.
+
+\section{LexBridge}
+\subsection{C1: Code-Aware Section Resolution}
+% NER formats; six-rule priority with confidences.
+\subsection{C2: Cross-Code Graph Retrieval}
+% Graph schema; hop; hybrid BM25+dense+graph with RRF; collision filter.
+\subsection{C3: Precedent Transferability}
+% Rule layer (diff ratio, clause split) + LLM classifier; label→tag map.
+\subsection{C4: Temporal Gate}
+% Offence-date extraction; governing family; dual-code answers when undated.
+\subsection{Generation and Verification}
+% Citation format, dual citation, claim verification and single regeneration.
+
+\section{LexBridge-QA}
+% Templates, candidate generation, annotation protocol, κ, statistics per category.
+
+\section{Experimental Setup}
+% Corpora (ILDC, Indian Kanoon sample), mappings (HF + IEEE, conflicts), models (bge-m3, bge-reranker, qwen2.5-7b),
+% baselines (No-RAG, BM25, Dense, Hybrid), metrics (CER@k, code acc, R@k, MRR, nDCG@k, transfer F1, temporal acc,
+% citation P/R, faithfulness).
+
+\section{Results}
+% Real profile: 2,955 eCourts judgments, official India Code statutes, 562 HF mappings; LexBridge-QA silver
+% labels (explicit citations), test split (n=215). Design choices were made on dev. Tables are auto-generated.
+\input{tables/real/main}
+\input{tables/real/ablation}
+\input{tables/real/significance_bm25}
+\input{tables/real/generation}
+% Fixture regression tables (not evidence): tables/main.tex, tables/ablation.tex
+
+\subsection{Component studies}
+% C1 masked-code evaluation (test): always-IPC 0.473, date-only 0.770, v1 0.668, v2 0.772, v2+prior 0.867.
+% Role tagger (MARRO IN test): rules 0.116 vs learned 0.669 macro-F1.
+% Reranker study (dev): ms-marco cross-encoder P@5 0.346 vs none 0.664.
+% Mapping check: 508 consistent / 32 suspect / 22 unchecked; HF numbering errors (171A, 442--460).
+
+\section{Error Analysis}
+% Silver-label bias toward citation-based retrieval; CER not significant on real data (n=43);
+% citing typos in judgments ("302(2)" for 303(2)); HF mapping off-by-one errors; weak 1.5B C3 labels.
+
+\section{Limitations}
+Relevance labels are silver (explicit citations) and favour citation-aware systems; no human annotation yet;
+CPU-scale models (MiniLM, Qwen2.5-1.5B); no CrPC text or CrPC/IEA mappings. Criminal law only; mapping errors propagate into retrieval and applicability tags; rule-based role tagging;
+procedural savings under the BNSS are flagged but not modelled. LexBridge does not provide legal advice.
+
+\section*{Ethics Statement}
+% Risks of over-reliance by litigants; data licensing (India Code, ILDC terms, Indian Kanoon terms); annotator compensation.
+
+\bibliography{custom}
+\end{document}

@@ -1,0 +1,1618 @@
+{
+  "summary": {
+    "n": 60,
+    "CER@5": 0.0,
+    "answer_collision": 0.0,
+    "code_resolution_acc": 1.0,
+    "P@5": 0.7,
+    "Recall@5": 0.20283289455255799,
+    "MRR": 0.8736111111111111,
+    "nDCG@5": 0.737591218219631,
+    "transfer_macroF1": null,
+    "temporal_acc": 1.0,
+    "citation_P": 0.0,
+    "citation_R": 0.0,
+    "faithfulness": 0.05
+  },
+  "rows": [
+    {
+      "qid": "COL-0002",
+      "category": "collision",
+      "question": "What are the ingredients of an offence under Section 333 IPC?",
+      "answer": "Governing provision(s): IPC \u00a7333 (Voluntarily causing grievous hurt to deter public servant from his duty), BNS \u00a7121 (Voluntarily causing hurt or grievous hurt to deter public servant from his duty). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe ingredients of an offence under Section 333 IPC involve:\n\n- Voluntarily causing grievous hurt to deter a public servant from performing their duty.\n- The act must be committed while the public servant is in the process of discharging their duty.\n- There must be intent to prevent or deter the public servant from fulfilling their duty.\n- The act can also be committed if it occurs in the course of the lawful discharge of the public servant\u2019s duty.\n\nThis offense carries penalties including imprisonment up to 10 years and a fine.\nDual citation: BNS \u00a7121 \u21c4 IPC \u00a7333; BNS \u00a7121 \u21c4 IPC \u00a7332\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_333"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-MPHC020100432020_1_2020-06-29",
+        "ECRT-HCBM040177432023_1_2023-10-31",
+        "ECRT-MPHC010306232023_1_2023-07-17",
+        "ECRT-BRHC010554122017_1_2017-03-29",
+        "ECRT-BRHC010323552017_1_2017-06-14"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.21739130434782608,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0007",
+      "category": "collision",
+      "question": "What is the punishment under Section 324 for an offence committed on 5 January 2023?",
+      "answer": "Governing provision(s): IPC \u00a7324 (Voluntarily causing hurt by dangerous weapons or means). Offence date 05 January 2023 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for committing an offence under Section 324 IPC on 5 January 2023 falls under the jurisdiction of the Indian Penal Code (IPC). According to Section 324 IPC:\n\n\"Whoever, except in the case provided for by section 334, voluntarily causes hurt by means of any instrument for shooting, stabbing or cutting, or any instrument which, used as a weapon of offence, is likely to cause death, or by means of fire or any heated substance, or by means of any poison or any corrosive substance, or by means of any explosive substance or by means of any substance which it is deleterious to the human body to inhale, to swallow, or to receive into the blood, or by means of any animal, shall be punished with imprisonment of either description for a term which may extend to three years, or with fine\nDual citation: BNS \u00a7118 \u21c4 IPC \u00a7324\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_324"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-PHHC010457342013_1_2013-11-14",
+        "ECRT-MPHC030180402020_1_2020-09-30",
+        "ECRT-BRHC010877432014_1_2017-02-13",
+        "ECRT-HCBM070006921998_1_2019-08-13",
+        "ECRT-HCBM030111882023_1_2023-04-17"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.01593625498007968,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8687949224876582,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0010",
+      "category": "collision",
+      "question": "Find case law on Section 326 IPC.",
+      "answer": "Governing provision(s): IPC \u00a7326 (Voluntarily causing grievous hurt by dangerous weapons or means), BNS \u00a7118 (Voluntarily causing hurt or grievous hurt by dangerous weapons or means). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nSection 326 IPC deals with voluntary causing grievous hurt through dangerous weapons or means. The relevant provisions are:\n\n**IPC \u00a7326:**  \nVoluntarily causing grievous hurt by means of any instrument for shooting, stabbing or cutting, or any instrument which, used as a weapon of offence, is likely to cause death, or by means of fire or any heated substance, or by means of any poison or any corrosive substance, or by means of any explosive substance, or by means of any substance which it is deleterious to the human body to inhale, to swallow, or to receive into the blood, or by means of any animal, shall be punished with imprisonment for life, or with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.\n\n**BNS \u00a7118:**  \nThe provision is\nDual citation: BNS \u00a7118 \u21c4 IPC \u00a7326; BNS \u00a7118 \u21c4 IPC \u00a7324\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_326"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-GAHC010005082010_1_2020-03-02",
+        "ECRT-HCBM010101582023_1_2023-06-08",
+        "ECRT-WBCHCA0481772023_2_2023-11-22",
+        "ECRT-GAHC010130442020_1_2020-12-21",
+        "ECRT-MPHC020295422018_1_2023-05-03"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.02577319587628866,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0014",
+      "category": "collision",
+      "question": "What does Section 352 of the Indian Penal Code deal with?",
+      "answer": "Governing provision(s): IPC \u00a7352 (Punishment for assault or criminal force otherwise than on grave provocation), BNS \u00a7131 (Punishment for assault or criminal force otherwise than on grave provocation). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nSection 352 of the Indian Penal Code deals with the offense of assault or criminal force other than on grave provocation. This section punishes anyone who assaults or uses criminal force to any person without grave and sudden provocation given by that person. The punishment includes imprisonment of either description for a term up to three months, or with a fine up to five hundred rupees, or with both. The explanation clarifies that grave and sudden provocation will not mitigate the punishment unless certain conditions are met, including whether the provocation was voluntary, obeyed the law, exercised power lawfully, or occurred during private defense. The governing code is the Indian Penal Code (IPC).\n\nIn summary, Section 352 imposes penalties for non-grave and sudden provocation offenses, distinguishing between grave and sudden provocation and outlining specific mitigating factors.\nDual citation: BNS \u00a7131 \u21c4 IPC \u00a7352\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_352"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-JKHC010023362025_1_2025-06-02",
+        "ECRT-MPHC020322592023_1_2023-12-01",
+        "ECRT-MPHC020097622019_1_2020-01-07",
+        "ECRT-GAHC010107852023_1_2023-06-14",
+        "ECRT-GAHC010186322012_1_2012-08-03"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0015",
+      "category": "collision",
+      "question": "What is the punishment under Section 352 for an offence committed on 5 January 2023?",
+      "answer": "Governing provision(s): IPC \u00a7352 (Punishment for assault or criminal force otherwise than on grave provocation). Offence date 05 January 2023 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nUnder Section 352 of the Indian Penal Code (IPC), the punishment for an offence committed on 5 January 2023 is imprisonment of either description for a term which may extend to three months, or with fine which may extend to five hundred rupees, or with both. This provision applies regardless of whether the provocation was grave and sudden enough to mitigate the offense, unless the provocation was voluntary or given by something done in obedience to the law, or by a public servant exercising their power lawfully, or if the provocation was given by something done in the lawful exercise of the right of private defense. The applicable statute is the Indian Penal Code, specifically IPC \u00a7352.\nDual citation: BNS \u00a7131 \u21c4 IPC \u00a7352\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_352"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-JKHC010023362025_1_2025-06-02",
+        "ECRT-MPHC020322592023_1_2023-12-01",
+        "ECRT-MPHC020097622019_1_2020-01-07",
+        "ECRT-GAHC010107852023_1_2023-06-14",
+        "ECRT-GAHC010186322012_1_2012-08-03"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0016",
+      "category": "collision",
+      "question": "What is the punishment under Section 352 for an offence committed on 2 January 2025?",
+      "answer": "Governing provision(s): BNS \u00a7352 (Intentional insult with intent to provoke breach of peace). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe punishment for an offence committed on 2 January 2025, according to the BNS, is imprisonment of either description for a term which may extend to two years, or with fine, or with both. This is specified in Section 352 of the BNS, which deals with intentional insult with intent to provoke breach of peace.\nDual citation: BNS \u00a7352 \u21c4 IPC \u00a7489; BNS \u00a7352 \u21c4 IPC \u00a7504\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_352"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-GAHC010217062023_1_2023-10-09",
+        "ECRT-BRHC010877432014_1_2017-02-13",
+        "ECRT-HCBM030111882023_1_2023-04-17",
+        "ECRT-HBHC010071942025_1_2025-02-11",
+        "ECRT-GAHC010129902023_1_2023-06-28"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.007009345794392523,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6843515475204855,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0017",
+      "category": "collision",
+      "question": "What does Section 308 of the Bharatiya Nyaya Sanhita deal with?",
+      "answer": "Governing provision(s): BNS \u00a7308 (Extortion), IPC \u00a7383 (Extortion), IPC \u00a7384 (Punishment for extortion), IPC \u00a7385 (Putting person in fear of injury in order to commit extortion), IPC \u00a7386 (Extortion by putting a person in fear of death or grievous hurt), IPC \u00a7387 (Putting person in fear of death or of grievous hurt, in order to commit extortion), IPC \u00a7388 (Extortion by threat of accusation of an offence punishable with death or impri sonment for life, etc), IPC \u00a7389 (Putting person in fear or accusation of offence, in order to commit extortion). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nSection 308 of the Bharatiya Nyaya Sanhita deals with extortion. It states:\n\n\"Whoever intentionally puts any person in fear of any injury to that person, or to any other, and thereby dishonestly induces the person so put in fear to deliver to any person any property, or valuable security or anything signed or sealed which may be converted into a valuable security, commits extortion.\"\n\nThe key points covered in this section include:\n\n1. **Definition**: Extortion involves putting someone in fear of injury or harm and then inducing them to deliver something they would otherwise refuse to do.\n\n2. **Illustrations**:\n   - Threatening to publish a defamatory libel.\n   - Threatening to keep a child in wrongful confinement.\n   - Threatening to send clubmen to plough up a field.\n   - ",
+      "resolved": [
+        "BNS_308"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-CGHC010264542023_1_2023-09-19",
+        "ECRT-BRHC010300342016_1_2017-01-12",
+        "ECRT-JHHC010403802022_1_2023-04-05",
+        "ECRT-GJHC240265732021_3_2021-08-09",
+        "ECRT-HCBM010470372023_1_2023-10-25"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.054945054945054944,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0023",
+      "category": "collision",
+      "question": "What is the punishment under Section 332 for an offence committed on 30 June 2024?",
+      "answer": "Governing provision(s): IPC \u00a7332 (Voluntarily causing hurt to deter public servant from his duty). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for an offence committed on 30 June 2024 under Section 332 of the Indian Penal Code (IPC) is imprisonment of either description for a term which may extend to five years. This follows the procedure set forth in the Bombay State Special Courts (Savings Clause) Act, 1860, which applies to the state of Maharashtra. The applicable provision is:\n\n**IPC \u00a7332:** Voluntarily causing hurt to deter public servant from his duty: Whoever voluntarily causes hurt to any person being a public servant in the discharge of his duty as such public servant, or with intent to prevent or deter that person or any other public servant from discharging his duty as such public servant, or in consequence of anything done or attempted to be done by that person in the lawful discharge of his duty as such public servant, shall be punished with imprisonment\nDual citation: BNS \u00a7121 \u21c4 IPC \u00a7332\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_332"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-MPHC010526992017_1_2017-11-17",
+        "ECRT-GAHC010095662023_1_2023-05-16",
+        "ECRT-MPHC030257662017_1_2017-11-01",
+        "ECRT-HCBM040177432023_1_2023-10-31",
+        "ECRT-MPHC010453782023_1_2023-08-08"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.15625,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0024",
+      "category": "collision",
+      "question": "What is the punishment under Section 332 for an offence committed on 2 January 2025?",
+      "answer": "Governing provision(s): BNS \u00a7332 (House-trespass in order to commit offence). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe punishment for an offence committed on 2 January 2025 under Section 332 of the Bengal National Security Act (BNS) is as follows:\n\nUnder Section 332(c): \"punished with imprisonment, shall be punished with imprisonment of either description for a term which may extend to two years, and shall also be liable to fine.\"\n\nThis provision applies directly to the offence committed on 2 January 2025, as per the context provided.\nDual citation: BNS \u00a7332 \u21c4 IPC \u00a7449; BNS \u00a7332 \u21c4 IPC \u00a7450; BNS \u00a7332 \u21c4 IPC \u00a7451; BNS \u00a7332 \u21c4 IPC \u00a7459\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_332"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-BRHC011104742025_1_2025-11-20",
+        "ECRT-JKHC010042092025_1_2025-11-25",
+        "ECRT-KLHC010074412017_1_2017-10-27",
+        "ECRT-CGHC010326252023_1_2023-11-07",
+        "ECRT-MPHC010582242016_1_2017-02-09"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.3333333333333333,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0026",
+      "category": "collision",
+      "question": "Find case law on Section 325 IPC.",
+      "answer": "Governing provision(s): IPC \u00a7325 (Punishment for voluntarily causing grievous hurt), BNS \u00a7117 (Voluntarily causing grievous hurt). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant provisions regarding voluntary causing grievous hurt are outlined in the Indian Penal Code (IPC), specifically sections 325 and 326. According to these sections:\n\n- **Section 325 IPC** states that anyone who voluntarily causes grievous hurt will be punished with imprisonment of either description for a term which may extend to seven years, and they will also be liable to a fine. \n\n- **Section 326 IPC** further specifies that if the offender intentionally causes grievous hurt while intending or knowing themselves to be likely to cause grievous hurt, they will still be subject to the same penalties unless otherwise specified in the next section.\n\nDual citation: BNS \u00a7117 \u21c4 IPC \u00a7325; BNS \u00a7117 \u21c4 IPC \u00a7322\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_325"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-WBCHCJ0046962025_1_2025-11-17",
+        "ECRT-GJHC240290031999_1_2001-07-13",
+        "ECRT-WBCHCA0481772023_2_2023-11-22",
+        "ECRT-HCBM010247182022_1_2023-01-27",
+        "ECRT-MPHC030070482020_1_2020-06-02"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.02976190476190476,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0027",
+      "category": "collision",
+      "question": "What is the punishment under Section 325 for an offence committed on 30 June 2024?",
+      "answer": "Governing provision(s): IPC \u00a7325 (Punishment for voluntarily causing grievous hurt). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for an offence committed on 30 June 2024, according to the IPC, is:\n\n**Section 325:** \"Whoever, except in the case provided for by section 335, voluntarily causes grievous hurt, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.\"\n\nThis provision applies directly to the situation described, where the offence occurred on 30 June 2024, falling within the jurisdiction covered by the IPC prior to the transition to the new criminal procedure codes (CrPC \u2192 BNSS).\n\nFor more detailed information about the specific circumstances and potential variations based on other sections, please refer to the applicable statutes and precedents cited above.\nDual citation: BNS \u00a7117 \u21c4 IPC \u00a7325\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_325"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-WBCHCJ0046962025_1_2025-11-17",
+        "ECRT-GJHC240290031999_1_2001-07-13",
+        "ECRT-GJHC240141472002_1_2003-03-05",
+        "ECRT-WBCHCA0081582020_4_2023-01-18",
+        "ECRT-MPHC030073252017_1_2017-03-27"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.02976190476190476,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0033",
+      "category": "collision",
+      "question": "What does Section 269 of the Bharatiya Nyaya Sanhita deal with?",
+      "answer": "Governing provision(s): BNS \u00a7269 (Failure by person released on bail bond or bond to appear in Court), IPC \u00a7229A (Failure by person released on bail or bond to appear in court). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nSection 269 of the Bharatiya Nyaya Sanhita deals with failure by a person who was released on bail bond or bond to appear in court without sufficient cause. This section punishes the individual with imprisonment of either description for a term up to one year, or with a fine, or both. The explanation states that the punishment includes additional penalties if the offender would have faced them on conviction for the offense they were charged with. Additionally, the section allows the court to issue a proclamation under Section 84 of the Bharatiya Nyaya Sanhita if necessary.\nDual citation: BNS \u00a7269 \u21c4 IPC \u00a7229A\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_269"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-CGHC010340382024_1_2024-11-22",
+        "ECRT-CGHC010369372024_1_2024-10-24",
+        "ECRT-CGHC010349322024_1_2024-10-16",
+        "ECRT-CGHC010343822024_1_2024-10-07",
+        "ECRT-CGHC010405672024_1_2024-12-09"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.22727272727272727,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0034",
+      "category": "collision",
+      "question": "Find case law on Section 269 IPC.",
+      "answer": "Governing provision(s): IPC \u00a7269 (Negligent act likely to spread infection of disease dangerous to life), BNS \u00a7271 (Negligent act likely to spread infection of disease dangerous to life). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe context provided discusses various aspects related to the interpretation and application of laws concerning the spread of infectious diseases. Specifically, it mentions Section 269 IPC, which deals with acts likely to spread the infection of diseases dangerous to life. \n\nAccording to the context:\n\n- **Section 269 IPC** states that anyone who unlawfully or negligently does an act likely to spread the infection of any disease dangerous to life will be punished with imprisonment up to six months, or with a fine, or both.\n\nThis section directly addresses the issue of spreading infectious diseases through negligence. Therefore, if someone commits an act likely to spread an infectious disease dangerous to life, they would be subject to the penalties outlined in Section 269 IPC.\n\nIn summary, Section 269 IPC applies to acts likely to spread infectious diseases dangerous to life, providing clear guidelines for punishment based on negligence.\nDual citation: BNS \u00a7271 \u21c4 IPC \u00a7269\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_269"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-HCBM070357212022_1_2023-01-03",
+        "ECRT-GAHC010071762020_1_2020-06-04",
+        "ECRT-GAHC010070982020_1_2020-05-27",
+        "ECRT-HCBM010470262022_1_2023-06-09",
+        "ECRT-HCBM010438572023_1_2023-10-16"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 0.8,
+      "mrr": 0.5,
+      "ndcg": 0.7606395682357036,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0035",
+      "category": "collision",
+      "question": "What is the punishment under Section 269 for an offence committed on 30 June 2024?",
+      "answer": "Governing provision(s): IPC \u00a7269 (Negligent act likely to spread infection of disease dangerous to life). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for committing an offence on 30 June 2024, according to the IPC, is:\n\n**Section 269:** \"Whoever unlawfully or negligently does any act which is, and which he knows or has reason to believe to be, likely to spread the infection of any disease dangerous to life, shall be punished with imprisonment of either description for a term which may extend to six months, or with fine, or with both.\"\n\nThis provision applies directly to the situation described, as the offence occurred prior to the transition to the new criminal procedure codes (BNS and BNSS).\n\nFor further details regarding the applicable procedures and interpretations post-transition, refer to the context provided earlier.\nDual citation: BNS \u00a7271 \u21c4 IPC \u00a7269\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_269"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-HCBM010470262022_1_2023-06-09",
+        "ECRT-HCBM070357212022_1_2023-01-03",
+        "ECRT-HCBM010438572023_1_2023-10-16",
+        "ECRT-GAHC010071762020_1_2020-06-04",
+        "ECRT-GAHC010070982020_1_2020-05-27"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.9047172294870751,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0036",
+      "category": "collision",
+      "question": "What is the punishment under Section 269 for an offence committed on 15 August 2024?",
+      "answer": "Governing provision(s): BNS \u00a7269 (Failure by person released on bail bond or bond to appear in Court). Offence date 15 August 2024 is on or after 01 July 2024: the BNS governs the offence.\nUnder Section 269 of the Bombay Nationality and Security Act (BNS), the punishment for failing to appear in court without sufficient cause is imprisonment of either description for a term which may extend to one year, or with fine, or with both. This applies directly to the situation described where the offence was committed on 15 August 2024, falling within the jurisdiction covered by the BNS.\nDual citation: BNS \u00a7269 \u21c4 IPC \u00a7229A\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_269"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-CGHC010340382024_1_2024-11-22",
+        "ECRT-ODHC010409592025_1_2025-10-28",
+        "ECRT-CGHC010369372024_1_2024-10-24",
+        "ECRT-CGHC010328412023_1_2023-11-10",
+        "ECRT-CGHC010280992023_1_2023-09-08"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.18181818181818182,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8687949224876582,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0039",
+      "category": "collision",
+      "question": "What is the punishment under Section 2 for an offence committed on 12 March 2019?",
+      "answer": "Governing provision(s): IPC \u00a72 (Punishment of offences committed within India). Offence date 12 March 2019 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for committing an offence on 12 March 2019 falls under the jurisdiction of the Indian Penal Code (IPC), as per the context provided. According to Section 2 of the IPC:\n\n\"Every person shall be liable to punishment under this Code and not otherwise for every act or omission contrary to the provisions thereof, of which he shall be guilty within India.\"\n\nThis means that the punishment prescribed in the IPC applies to all offences committed within India, including those committed on 12 March 2019. The specific punishment for the offence would depend on the nature of the crime, but generally, it would include imprisonment, fines, or both, as outlined in various sections of the IPC.\n\nFor example, Section 352 of the Bombay Special Crimes Act (BNS) provides penalties for insulting another person, while Section 35 of the Bombay Sessions Act\nDual citation: BNS \u00a71 \u21c4 IPC \u00a72\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_2"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-HBHC010331462025_1_2025-07-31",
+        "ECRT-HBHC010362942025_1_2025-07-31",
+        "ECRT-KLHC010254772008_1_2008-11-03",
+        "ECRT-GJHC240257752005_1_2005-10-18",
+        "ECRT-MPHC020273962016_1_2017-01-17"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.2,
+      "prec": 0.2,
+      "mrr": 1.0,
+      "ndcg": 0.3391602052736161,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0041",
+      "category": "collision",
+      "question": "What are the ingredients of an offence under Section 329 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7329 (Criminal trespass and house-trespass), IPC \u00a7441 (Criminal trespass), IPC \u00a7447 (Punishment for criminal trespass). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nUnder Section 329 BNS, criminal trespass occurs when someone enters onto or remains in property without lawful authority with the intent to commit an offense or to intimidate, insult, or annoy any person in possession of the property. To commit house-trespass, one must enter a building, tent, or vessel used as a human dwelling or a place for worship, or a place for the custody of property. The punishment for criminal trespass includes imprisonment up to three months, a fine up to five thousand rupees, or both. House-trespass carries a maximum penalty of one year in prison, a fine up to five thousand rupees, or both.\nDual citation: BNS \u00a7329 \u21c4 IPC \u00a7441; BNS \u00a7329 \u21c4 IPC \u00a7447\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_329"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-WBCHCJ0048172025_1_2025-09-11",
+        "ECRT-GAHC010019912023_1_2023-08-30",
+        "ECRT-WBCHCJ0004162023_1_2023-02-07",
+        "ECRT-HCBM010287072023_1_2023-08-07",
+        "ECRT-JKHC020027612025_1_2025-10-28"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.038461538461538464,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.7227265726449519,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0043",
+      "category": "collision",
+      "question": "What is the punishment under Section 329 for an offence committed on 5 January 2023?",
+      "answer": "Governing provision(s): IPC \u00a7329 (Voluntarily causing grievous hurt to extort property, or to constrain to an illegal act). Offence date 05 January 2023 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe punishment for committing an offence under Section 329 of the Indian Penal Code (IPC) on 5 January 2023 would be:\n\n**Imprisonment for life**, or **imprisonment of either description for a term which may extend to ten years**, and a fine.\n\nThis can be found in the IPC \u00a7329, which states:\n\n> \"Whoever voluntarily causes grievous hurt for the purpose of extorting from the sufferer or from any person interested in the sufferer any property or valuable security, or of constraining the sufferer or any person interested in such sufferer to do anything that is illegal or which may facilitate the commission of an offence, shall be punished with imprisonment for life, or imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.\"\n\nGiven the context provided, it\nDual citation: BNS \u00a7119 \u21c4 IPC \u00a7329\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_329"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-MPHC020008792023_1_2023-01-20",
+        "ECRT-WBCHCA0506892025_1_2025-11-28",
+        "ECRT-HCBM010465742023_1_2023-10-12",
+        "ECRT-BRHC011202882025_1_2025-12-03",
+        "ECRT-HCBM010086702017_1_2017-03-07"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.8333333333333334,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "COL-0045",
+      "category": "collision",
+      "question": "What are the ingredients of an offence under Section 313 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7313 (Punishment for belonging to gang of robbers, etc), IPC \u00a7400 (Punishment for belonging to gang of dacoits), IPC \u00a7401 (Punishment for belonging to gang of thieves). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe ingredients of an offence under Section 313 BNS include:\n\n- Being part of a gang of persons who regularly commit theft or robbery\n- Not being a gang of dacoits\n\nThis offense carries a maximum penalty of seven years' rigorous imprisonment and a fine.\nDual citation: BNS \u00a7313 \u21c4 IPC \u00a7400; BNS \u00a7313 \u21c4 IPC \u00a7401\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_313"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-HCBM010336962006_1_2006-12-08",
+        "ECRT-BRHC011093472022_1_2023-04-05",
+        "ECRT-BRHC011042102025_1_2025-11-04",
+        "ECRT-BRHC010243602025_1_2025-04-30",
+        "ECRT-TRHC010011122025_1_2025-09-15"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.4,
+      "prec": 0.4,
+      "mrr": 0.5,
+      "ndcg": 0.38356636737133565,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "COL-0046",
+      "category": "collision",
+      "question": "Is a charge under Section 313 IPC a serious offence?",
+      "answer": "Governing provision(s): IPC \u00a7313 (Causing miscarriage without woman's consent), BNS \u00a789 (Causing miscarriage without woman's consent). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nYes, a charge under Section 313 IPC can be considered a serious offense. According to the IPC, causing miscarriage without the woman's consent carries penalties including imprisonment for life or up to ten years, along with fines. Similarly, the BNS version of Section 313 provides similar punishments. These offenses involve grave consequences such as physical harm and potential loss of life, making them serious crimes.\nDual citation: BNS \u00a789 \u21c4 IPC \u00a7313\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_313"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-JHHC010142442011_1_2023-02-03",
+        "ECRT-MPHC030171422017_1_2017-07-25",
+        "ECRT-BRHC010914432025_1_2025-11-20",
+        "ECRT-MPHC010154902019_1_2023-06-21",
+        "ECRT-CGHC010445582019_1_2020-03-02"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.3333333333333333,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8539316501572937,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "answer_collision": 0.0,
+      "cer": 0.0
+    },
+    {
+      "qid": "CRO-0095",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for criminal intimidation under Section 351 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7351 (Criminal intimidation), IPC \u00a7488 (Punishment for making use of any such false mark), IPC \u00a7503 (Criminal intimidation), IPC \u00a7506 (Punishment for criminal intimidation), IPC \u00a7507 (Criminal intimidation by an anonymous communication). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for criminal intimidation under Section 351 BNS include:\n\n1. **ECRT-MPHC020060312023_1_2023-02-23** - This case discusses the necessity for law enforcement agencies to coordinate efforts to prevent violence and ensure social justice. While not directly addressing criminal intimidation specifically, it emphasizes the importance of community involvement and institutional mechanisms to combat such issues.\n\n2. **ECRT-HCBM030003532023_1_2023-02-23** - In this case, the court addresses the need for preventive measures against crimes like criminal intimidation. However, it does not provide specific guidance on how to handle criminal intimidation cases.\n\n3. **ECRT-CGHC01029764\nDual citation: BNS \u00a7351 \u21c4 IPC \u00a7488; BNS \u00a7351 \u21c4 IPC \u00a7503; BNS \u00a7351 \u21c4 IPC \u00a7506; BNS \u00a7351 \u21c4 IPC \u00a7507\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_351"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-MPHC020060312023_1_2023-02-23",
+        "ECRT-HCBM030003532023_1_2023-02-23",
+        "ECRT-CGHC010297642023_1_2023-10-06",
+        "ECRT-HCBM010336962006_1_2006-12-08",
+        "ECRT-HBHC010331462025_1_2025-07-31"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.006578947368421052,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8539316501572937,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0096",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for wrongful confinement under Section 127 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7127 (Wrongful confinement), IPC \u00a7340 (Wrongful confinement), IPC \u00a7341 (Punishment for wrongful restraint), IPC \u00a7342 (Punishment for wrongful confinement), IPC \u00a7343 (Wrongful confinement for three or more days), IPC \u00a7344 (Wrongful con finement for ten or more days), IPC \u00a7345 (Wrongful confinement of person for whose liberation writ has been issued), IPC \u00a7346 (Wrongful confinement in secret), IPC \u00a7347 (Wrongful confinement to extort property, or constrain to illegal act), IPC \u00a7348 (Wrongful confinement to extort confession, or compel restoration of property). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for wrongful confinement under Section 127 BNS include:\n\n1. **ECRT-MPHC010068842023_1_2023-02-06** (Directly Applicable)\n   - This case involved Santram Yadav vs. State of Madhya Pradesh. The court held that wrongful confinement includes preventing a person from proceeding beyond certain circumscribing limits, even if there was no physical lock or barrier. The court emphasized that the intent behind the confinement must be clear and intentional.\n\n2. **ECRT-KLHC010023012017_1_2017-04-04** (Contextual)\n   - This case dealt with the surrender of passports and affidavits. The court clarified that if a person does not\nDual citation: BNS \u00a7127 \u21c4 IPC \u00a7340; BNS \u00a7127 \u21c4 IPC \u00a7341; BNS \u00a7127 \u21c4 IPC \u00a7342; BNS \u00a7127 \u21c4 IPC \u00a7343; ",
+      "resolved": [
+        "BNS_127"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-MPHC010068842023_1_2023-02-06",
+        "ECRT-KLHC010023012017_1_2017-04-04",
+        "ECRT-HBHC010001302025_1_2025-02-04",
+        "ECRT-ODHC010886022023_1_2023-11-15",
+        "ECRT-GJHC240238971995_1_2003-05-21"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.01090909090909091,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6992148198508501,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0097",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for forgery of valuable security, will, etc under Section 338 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7338 (Forgery of valuable security, will, etc), IPC \u00a7467 (Forgery of valuable security, will, etc). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for forgery of valuable securities, wills, etc., under Section 338 BNS include:\n\n1. **ECRT-MPHC010190182013_1_2019-04-22** (Directly Applicable): This case directly applies the provisions of Section 467 IPC, which is equivalent to Section 338 BNS. The court holds that forgery of documents purporting to be valuable securities, wills, or other authorities can lead to imprisonment for life or up to 10 years, depending on the circumstances.\n\n2. **ECRT-JHHC010406372025_1_2025-12-12** (Contextual Application): This case provides context regarding the definition of\nDual citation: BNS \u00a7338 \u21c4 IPC \u00a7467\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_338"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-MPHC010190182013_1_2019-04-22",
+        "ECRT-JHHC010406372025_1_2025-12-12",
+        "ECRT-ODHC010286232009_1_2017-10-10",
+        "ECRT-MPHC010193392021_1_2021-05-05",
+        "ECRT-MPHC030209822017_1_2017-08-30"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.04032258064516129,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0098",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for robbery under Section 309 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7309 (Robbery), IPC \u00a7390 (Robbery), IPC \u00a7392 (Punishment for robbery), IPC \u00a7393 (Attempt to commit robbery), IPC \u00a7394 (Voluntarily causing hurt in committing robbery). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nRobbery under Section 309 BNS involves theft or extortion where the offender causes or attempts to cause death, hurt, wrongful restraint, or fear thereof to another person. Relevant precedents include:\n\n1. **BHUVNESHWAR DATT JOSHI** (2023): Upheld the decision to release the appellant on bail due to the lengthy trial process. The court found no merit in the case and allowed the bail application based on the appellant's ability to provide a personal bond.\n\n2. **SHASHIDHAR BHANDARY** (2017): Challenged convictions and sentences for multiple offenses under IPC, including Section 366, 376, 392, 394, 328, 417, 465, 468, 473,\nDual citation: BNS \u00a7309 \u21c4 IPC \u00a7390; BNS \u00a7309 \u21c4 IPC \u00a7392; BNS \u00a7309 \u21c4 IPC \u00a7393; BNS \u00a7309 \u21c4 IPC \u00a7394\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_309"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-MPHC020047412023_1_2023-02-17",
+        "ECRT-HBHC010001302025_1_2025-02-04",
+        "ECRT-KAHC010090862014_1_2017-10-12",
+        "ECRT-TRHC010011122025_1_2025-09-15",
+        "ECRT-GJHC240238971995_1_2003-05-21"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.021505376344086023,
+      "prec": 0.4,
+      "mrr": 1.0,
+      "ndcg": 0.5087403079104241,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0101",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for act endangering life or personal safety of others under Section 125 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7125 (Act endangering life or personal safety of others), IPC \u00a7336 (Act endangering life or personal safety of others), IPC \u00a7337 (Causing hurt by act endangering life or personal safety of others), IPC \u00a7338 (Causing grievous hurt by act endangering life or personal safety of others). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant preambles for act endangering life or personal safety of others under Section 125 BNS include:\n\n- **IPC 336** states: \"Whoever does any act so rashly or negligently as to endanger human life or the personal safety of others, shall be punished with imprisonment of either description for a term which may extend to three months or with fine which may extend to two hundred and fifty rupees, or with both.\"\n  \n- **IPC 337** specifies: \"Whoever causes hurt to any person by doing any act so rashly or negligently as to endanger human life, or the personal safety of others, shall be punished with imprisonment of either description for a term which may extend to six months, or with fine which may extend to five hundred rupees, or with both.\"\n\n- **IPC 338** outlines:\nDual citation: BNS \u00a7125 \u21c4 IPC \u00a7336; BNS \u00a7125 \u21c4 IPC \u00a7337; BNS \u00a7125 \u21c4 IPC \u00a7338\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_125"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-GJHC240146811988_1_2000-04-07",
+        "ECRT-JHHC010069842025_1_2025-12-17",
+        "ECRT-GJHC240238971995_1_2003-05-21",
+        "ECRT-GJHC240234411995_1_2007-09-28",
+        "ECRT-GJHC240165082021_2_2021-05-04"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.061224489795918366,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6992148198508501,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0102",
+      "category": "cross_code_precedent",
+      "question": "Are there judgments interpreting Section 229 of the Bharatiya Nyaya Sanhita?",
+      "answer": "Governing provision(s): BNS \u00a7229 (Punishment for false evidence), IPC \u00a7193 (Punishment for false evidence). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nNo specific judgments interpreting Section 229 of the Bharatiya Nyaya Sanhita (BNS) were found in the provided context. However, relevant provisions from the Indian Penal Code (IPC) and Criminal Procedure Code (CrPC) are discussed:\n\nSection 229 of the BNS punishes giving or fabricating false evidence in any stage of a judicial proceeding, including those mentioned in IPC sections 193 to 196, 199, 200, 205 to 211, and 228. These sections cover various types of false evidence offenses, including those related to trials, investigations, and proceedings before courts.\n\nThe context mentions several cases where false evidence was charged, but does not provide detailed interpretations of Section 229. For instance, in ECRT-S_1996_\nDual citation: BNS \u00a7229 \u21c4 IPC \u00a7193\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_229"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-S_1996_2_787_795_EN",
+        "ECRT-HBHC010001302025_1_2025-02-04",
+        "ECRT-S_1959_1_274_310_EN",
+        "ECRT-BRHC010550612025_1_2025-11-13",
+        "ECRT-BRHC010692822025_1_2025-09-24"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.0,
+      "prec": 0.0,
+      "mrr": 0.0,
+      "ndcg": 0.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0103",
+      "category": "cross_code_precedent",
+      "question": "Are there judgments interpreting Section 132 of the Bharatiya Nyaya Sanhita?",
+      "answer": "Governing provision(s): BNS \u00a7132 (Assault or criminal force to deter public servant from discharge of his duty), IPC \u00a7353 (Assault or criminal force to deter public servant from discharge of his duty). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nNo judgment interpretations of Section 132 of the Bharatiya Nyaya Sanhita (BNS) exist. However, certain cases apply principles from the Indian Penal Code (IPC) to similar offenses:\n\n- **Maharashtra Act 40 of 2018**: Amends section 353 of the Indian Penal Code to substitute \"two years\" with \"five years.\" This amendment applies to offenses committed before 01 July 2024 under the IPC but does not directly interpret Section 132 of the BNS.\n\n- **Case Law**:\n  - **ECRT-WBCHCJ0060712024_1_2025-04-28\u00b68**: Directly applicable. Where the CGST Act is applicable, the IPC cannot be invoked due to the higher penalty\nDual citation: BNS \u00a7132 \u21c4 IPC \u00a7353\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_132"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-WBCHCJ0060712024_1_2025-04-28",
+        "ECRT-BRHC010998092025_1_2025-10-08",
+        "ECRT-WBCHCA0297232025_1_2025-10-31",
+        "ECRT-ODHC010886022023_1_2023-11-15",
+        "ECRT-BRHC011104142025_1_2025-12-01"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.041666666666666664,
+      "prec": 0.6,
+      "mrr": 0.5,
+      "ndcg": 0.4912596920895758,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0105",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for enticing or taking away or detaining with criminal intent a married woman under Section 84 BNS?",
+      "answer": "Governing provision(s): BNS \u00a784 (Enticing or taking away or detaining with criminal intent a married woman), IPC \u00a7498 (Enticing or taking away or detaining with criminal intent a married woman). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for enticing or taking away or detaining with criminal intent a married woman under Section 84 BNS include:\n\n1. **ECRT-GJHC240626242017_2_2023-03-16\u00b62** (Context): This case discusses the context of the statute and emphasizes that the age of the victim must be considered. If the victim is not marriageable, the case does not stand.\n\n2. **ECRT-BRHC010770172025_1_2025-11-12\u00b61** (Context): Here, the court noted that the age of the victim was not marriageable, thus disqualifying the case from exercising inherent powers.\n\n3. **ECRT-JKHC020027\nDual citation: BNS \u00a784 \u21c4 IPC \u00a7498\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_84"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-GJHC240639632021_1_2021-12-03",
+        "ECRT-BRHC010770172025_1_2025-11-12",
+        "ECRT-GJHC240626242017_2_2023-03-16",
+        "ECRT-JKHC020027612025_1_2025-10-28",
+        "ECRT-ODHC010301162023_1_2023-07-12"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.04878048780487805,
+      "prec": 0.4,
+      "mrr": 1.0,
+      "ndcg": 0.5531464700081437,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0107",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for cheating under Section 318 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7318 (Cheating), IPC \u00a7415 (Cheating), IPC \u00a7417 (Punishment for cheating), IPC \u00a7418 (Cheating with knowledge that wrongful loss may ensue to person whose interest offender is bound to protect), IPC \u00a7420 (Cheating and dishonestly inducing delivery of property). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for cheating under Section 318 BNS include:\n\n1. **ECRT-GAHC010040242006_1_2015-06-25** (APPLICABLE_WITH_CAVEAT): This case discusses whether a simple promise or representation made by someone who later refuses to marry the other party constitutes cheating under Section 415 IPC. The court found that mere promise or representation without intent to marry did not amount to cheating unless there was knowledge that the refusal would cause wrongful loss. Hence, the conviction was upheld due to lack of evidence showing deceitful intentions.\n\n2. **ECRT-HBHC010084152005_1_2008-01-17** (APPLICABLE_WITH_CAVEAT): This case addresses\nDual citation: BNS \u00a7318 \u21c4 IPC \u00a7415; BNS \u00a7318 \u21c4 IPC \u00a7417; BNS \u00a7318 \u21c4 IPC \u00a7418; BNS \u00a7318 \u21c4 IPC \u00a7420\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_318"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-GAHC010040242006_1_2015-06-25",
+        "ECRT-HBHC010084152005_1_2008-01-17",
+        "ECRT-HCMA011161422009_1_2016-09-30",
+        "ECRT-ODHC010485182019_1_2023-01-25",
+        "ECRT-MPHC020273962016_1_2017-01-17"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.014245014245014245,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0111",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for stolen property under Section 317 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7317 (Stolen property), IPC \u00a7410 (Stolen property), IPC \u00a7411 (Dishonestly receiving stolen property), IPC \u00a7412 (Dishonestly receiving property stolen in the commission of a dacoity), IPC \u00a7413 (Habitually dealing in stolen property), IPC \u00a7414 (Assisting in concealment of stolen property). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for stolen property under Section 317 BNS include:\n\n1. **Patna High Court Cr.Misc. No.17320 of 2017** (directly applicable)\n   - **Context**: The court held that the mere act of receiving stolen property without knowledge of its origin does not constitute theft unless the accused knew or had reason to believe it was stolen property.\n   - **Applicability Tag**: DIRECTLY_APPLICABLE\n\n2. **In the High Court of Judicature at Patna Criminal Miscellaneous No.20678 of 2017** (directly applicable)\n   - **Context**: The court ruled that the receipt of stolen property without knowledge of its origin does not constitute theft unless the accused knew or had reason to believe it was stolen property.\n   - **Applicability Tag**: DIRECT\nDual citation: BNS \u00a7317 \u21c4 IPC \u00a7410; BNS \u00a7317 \u21c4 IPC \u00a7411; BNS \u00a7317 \u21c4 IPC \u00a7412; BNS \u00a7317 \u21c4 IPC \u00a7413; BNS \u00a7317 \u21c4 IPC \u00a7414\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_317"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-BRHC010896182017_1_2017-07-07",
+        "ECRT-BRHC010865532017_1_2017-06-28",
+        "ECRT-WBCHCJ0060712024_1_2025-04-28",
+        "ECRT-1972_3_497_504_EN",
+        "ECRT-GJHC240042301984_1_1998-11-10"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.02054794520547945,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.7227265726449519,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0112",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 338 under Section 341 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7338 (Forgery of valuable security, will, etc), IPC \u00a7467 (Forgery of valuable security, will, etc), BNS \u00a7341 (Making or possessing counterfeit seal, etc., with intent to commit forgery punishable under section 338), IPC \u00a7472 (Making or possessing counterfeit seal, etc., with intent to commit fo rgery punishable under section 467), IPC \u00a7473 (Making or possessing counterfeit seal, etc., with intent to commit forger y punishable otherwise). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for making or possessing counterfeit seals with intent to commit forgery under Section 338 of the Bombay Nationality and Citizenship Act (BNS) include:\n\n1. **ECRT-HCMD010342952017_1_2017-07-18** (Directly Applicable)\n   - This case involved the Madurai Bench of the Madras High Court where they ruled that the offense under Section 338 of the Indian Penal Code (IPC) was applicable even though the act occurred before the transition to the Bombay Nationality and Citizenship Act (BNS).\n\n2. **ECRT-ODHC010496222023_1_2023-10-19** (Directly Applicable)\n   - In this case, the Supreme\nDual citation: BNS \u00a7338 \u21c4 IPC \u00a7467; BNS \u00a7341 \u21c4 IPC \u00a7472; BNS \u00a7341 \u21c4 IPC \u00a7473\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_338",
+        "BNS_341"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-HCMD010342952017_1_2017-07-18",
+        "ECRT-ODHC010496222023_1_2023-10-19",
+        "ECRT-BRHC010263752017_1_2017-12-21",
+        "ECRT-HCMA011004042017_1_2017-12-21",
+        "ECRT-ODHC010286232009_1_2017-10-10"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.3333333333333333,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.7227265726449519,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0113",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for criminal breach of trust under Section 316 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7316 (Criminal breach of trust), IPC \u00a7403 (Dishonest misappropriation of property), IPC \u00a7405 (Criminal breach of trust), IPC \u00a7406 (Punishment for criminal breach of trust), IPC \u00a7407 (Criminal breach of trust by carrier, etc), IPC \u00a7408 (Criminal breach of trust by clerk or servant), IPC \u00a7409 (Criminal breach of trust by public servant, or by banker, merchant or agent). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for criminal breach of trust under Section 316 BNS include:\n\n1. **ECRT-1972_3_497_504_EN\u00b619** - This case discusses the distinction between receiving money through deceitful representations and subsequent misuse. While the decision does not directly address the specific issue of criminal breach of trust, it highlights the importance of distinguishing between honest receipt and subsequent misappropriation.\n\n2. **ECRT-1972_3_497_504_EN\u00b615** - In this case, the court clarifies that before a public servant can be convicted of criminal breach of trust, the property must be entrusted to them. The court emphasizes that the concept of entrustment is crucial in understanding the offense.\n\n3. **ECRT-GJHC2404326\nDual citation: BNS \u00a7316 \u21c4 IPC \u00a7403; BNS \u00a7316 \u21c4 IPC \u00a7405; BNS \u00a7316 \u21c4 IPC \u00a7406; BNS \u00a7316 \u21c4 IPC \u00a7407; BNS \u00a7316 \u21c4 IPC \u00a7408; BNS \u00a7316 \u21c4 IPC \u00a7409\nThis is general legal information, not legal advice. Verify aga",
+      "resolved": [
+        "BNS_316"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-1972_3_497_504_EN",
+        "ECRT-GJHC240432622005_2_2006-03-10",
+        "ECRT-JHHC010328202024_1_2025-11-20",
+        "ECRT-MPHC020273962016_1_2017-01-17",
+        "ECRT-HBHC010682892017_1_2017-12-08"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.027777777777777776,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0114",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for mischief by injury, inundation, fire or explosive substance, etc under Section 326 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7326 (Mischief by injury, inundation, fire or explosive substance, etc), IPC \u00a7430 (Mischief by injury to works of irrigation or by wrongfully diverting water), IPC \u00a7431 (Mischief by injury to public road, bridge, river or channel), IPC \u00a7432 (Mischief by causing inundation or obstruction to public drainage attended with damage), IPC \u00a7433 (Mischief by destroying, moving or rendering less useful a light-house or sea-mark), IPC \u00a7434 (Mischief by destroying or moving, etc., a land-mark fixed by public authority), IPC \u00a7435 (Mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees), IPC \u00a7436 (Mischief by fire or explosive substance with intent to destroy house, etc). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for mischief by injury, inundation, fire, or explosive substances under Section 326 BNS include:\n\n1. **ECRT-CGHC010101192020_1_2020-08-14** (Directly applicable): \n   - **Case Name:** DY. GA 2 MCRCA No. 500 of 2020 and another Proceedings through Video Conferencing SB\n   - **Applicability Tag:** Directly Applicable\n\nThis case discusses the granting of anticipatory bail based on Section 438 of the Code of Criminal Procedure. While not directly addressing mischief offenses, it provides context on the legal framework for bail app",
+      "resolved": [
+        "BNS_326"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-CGHC010101192020_1_2020-08-14",
+        "ECRT-GAHC010070982020_1_2020-05-27",
+        "ECRT-MPHC010363702023_1_2023-07-06",
+        "ECRT-JHHC010319332023_1_2023-12-05",
+        "ECRT-JKHC020027612025_1_2025-10-28"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.15625,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0116",
+      "category": "cross_code_precedent",
+      "question": "Are there judgments interpreting Section 352 of the Bharatiya Nyaya Sanhita?",
+      "answer": "Governing provision(s): BNS \u00a7352 (Intentional insult with intent to provoke breach of peace), IPC \u00a7489 (Tampering with property mark with intent to cause injury), IPC \u00a7504 (Intentional insult with intent to provoke breach of the peace). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nNo judgment interpretations of Section 352 of the Bharatiya Nyaya Sanhita (BNS) exist. However, several cases involving similar offenses under Sections 126(2), 115(2), 352, 103(1), 351(3), and 3(5) of the Indian Penal Code (IPC) can be found. These include:\n\n1. **Patna High Court CR. MISC. No.49304 of 2025** - In this case, the petitioners were charged with assault resulting in death, which falls under Section 352 of the BNS. The court held that the offense required intentional insult intended to provoke breach of peace, leading to the victim's death.\n\n2. **Patna High Court CR. MISC. No.\nDual citation: BNS \u00a7352 \u21c4 IPC \u00a7489; BNS \u00a7352 \u21c4 IPC \u00a7504\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_352"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-BRHC010692822025_1_2025-09-24",
+        "ECRT-BRHC011174082025_1_2025-12-10",
+        "ECRT-BRHC010873042025_1_2025-12-17",
+        "ECRT-BRHC010955192025_1_2025-09-24",
+        "ECRT-BRHC011158162024_1_2025-10-08"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.011682242990654205,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0118",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for extortion under Section 308 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7308 (Extortion), IPC \u00a7383 (Extortion), IPC \u00a7384 (Punishment for extortion), IPC \u00a7385 (Putting person in fear of injury in order to commit extortion), IPC \u00a7386 (Extortion by putting a person in fear of death or grievous hurt), IPC \u00a7387 (Putting person in fear of death or of grievous hurt, in order to commit extortion), IPC \u00a7388 (Extortion by threat of accusation of an offence punishable with death or impri sonment for life, etc), IPC \u00a7389 (Putting person in fear or accusation of offence, in order to commit extortion). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for extortion under Section 308 BNS include:\n\n1. **ECRT-CGHC010264542023_1_2023-09-19** (APPLICABLE_WITH_CAVEAT)\n   - This case discusses the interpretation of Section 383 IPC regarding extortion. It clarifies that extortion involves putting someone in fear of injury and then inducing them to deliver property or valuable security. The court emphasizes that the act must involve the actual delivery of property or valuable security to constitute extortion.\n\n2. **ECRT-BRHC010300342016_1_2017-01-12** (APPLICABLE_WITH_CAVEAT)\n   - In this case, the court held that extortion requires the delivery of property or valuable\nDual citation: BNS \u00a7308 \u21c4 IPC \u00a7383; BNS \u00a7308 \u21c4 IPC \u00a7384; BNS \u00a7308 \u21c4 IPC \u00a7385; BNS \u00a7308 \u21c4 IPC \u00a7386; BNS \u00a7308 \u21c4 IPC \u00a7387; BNS \u00a7308 \u21c4 IPC \u00a7388;",
+      "resolved": [
+        "BNS_308"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-CGHC010264542023_1_2023-09-19",
+        "ECRT-BRHC010300342016_1_2017-01-12",
+        "ECRT-JHHC010403802022_1_2023-04-05",
+        "ECRT-BRHC010896892023_1_2023-12-13",
+        "ECRT-GJHC240265732021_3_2021-08-09"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.054945054945054944,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0120",
+      "category": "cross_code_precedent",
+      "question": "Are there judgments interpreting Section 296 of the Bharatiya Nyaya Sanhita?",
+      "answer": "Governing provision(s): BNS \u00a7296 (Obscene acts and songs), IPC \u00a7294 (Obscene acts and songs). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nNo judgments have interpreted Section 296 of the Bharatiya Nyaya Sanhita (BNS).\n\nThe applicable sections are:\n\n- **BNS \u00a7296**: Obscene acts and songs\n- **IPC \u00a7294**: Obscene acts and songs\n\nThere are no specific judgments interpreting Section 296 of the BNS. The focus appears to be more on other related offenses like obscenity and sexual assault under the IPC.\nDual citation: BNS \u00a7296 \u21c4 IPC \u00a7294\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_296"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-ODHC010797362025_1_2025-11-18",
+        "ECRT-ODHC010694962025_1_2025-12-02",
+        "ECRT-ODHC010725412025_1_2025-10-23",
+        "ECRT-ODHC010821222025_1_2025-11-28",
+        "ECRT-ODHC010691822025_1_2025-10-28"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.037037037037037035,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0121",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for attempt to commit robbery or dacoity when armed with deadly weapon under Section 312 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7312 (Attempt to commit robbery or dacoity when armed with deadly weapon), IPC \u00a7398 (Attempt to commit robbery or dacoity when armed with deadly weapon). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for attempt to commit robbery or dacoity when armed with a deadly weapon under Section 312 BNS include:\n\n1. **ECRT-WBCHCA0555162025_1_2025-12-08** (Directly Applicable)\n   - **Context**: The case involved an attempt to commit robbery or dacoity where the perpetrator was armed with a deadly weapon.\n   - **Decision**: The court found that the imprisonment with which the offender would be punished should not be less than seven years if armed with a deadly weapon during the attempted offense.\n\n2. **ECRT-ODHC010645402025_1_2025-09-24** (Directly Applicable)\n   - **Context**: The case pertained\nDual citation: BNS \u00a7312 \u21c4 IPC \u00a7398\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_312"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-WBCHCA0555162025_1_2025-12-08",
+        "ECRT-ODHC010645402025_1_2025-09-24",
+        "ECRT-CGHC010227212020_1_2020-11-23",
+        "ECRT-MPHC020007042020_1_2020-01-13",
+        "ECRT-GJHC240233401995_1_1998-01-23"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0122",
+      "category": "cross_code_precedent",
+      "question": "Are there judgments interpreting Section 118 of the Bharatiya Nyaya Sanhita?",
+      "answer": "Governing provision(s): BNS \u00a7118 (Voluntarily causing hurt or grievous hurt by dangerous weapons or means), IPC \u00a7324 (Voluntarily causing hurt by dangerous weapons or means), IPC \u00a7326 (Voluntarily causing grievous hurt by dangerous weapons or means). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nNo judgment has interpreted Section 118 of the Bharatiya Nyaya Sanhita (BNS). However, similar offenses under the Indian Penal Code (IPC) can be found in Section 324 and Section 326. For instance, voluntary causing grievous hurt by dangerous weapons or means carries penalties ranging from imprisonment up to 10 years and fines. The applicable statute depends on the specific facts and circumstances of the case.\nDual citation: BNS \u00a7118 \u21c4 IPC \u00a7324; BNS \u00a7118 \u21c4 IPC \u00a7326\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_118"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-HCBM070006921998_1_2019-08-13",
+        "ECRT-HCBM010101582023_1_2023-06-08",
+        "ECRT-BRHC011189192025_1_2025-12-17",
+        "ECRT-BRHC010496132017_1_2023-10-07",
+        "ECRT-HCBM010305522023_1_2023-08-04"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.014336917562724014,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8687949224876582,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0123",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for mischief under Section 324 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7324 (Mischief), IPC \u00a7425 (Mischief), IPC \u00a7426 (Punishment for mischief), IPC \u00a7427 (Mischief causing damage to the amount of fifty rupees), IPC \u00a7440 (Mischief committed after preparation made for causing death or hurt). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant precedents for mischief under Section 324 of the Bengal National Security Act (BNS) include:\n\n\nThese precedents provide guidance on the scope of mischief offenses under the BNS, emphasizing the broader definition of harm caused to property, regardless of ownership.\nDual citation: BNS \u00a7324 \u21c4 IPC \u00a7425; BNS \u00a7324 \u21c4 IPC \u00a7426; BNS \u00a7324 \u21c4 IPC \u00a7427; BNS \u00a7324 \u21c4 IPC \u00a7440\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_324"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-1973_1_488_492_EN",
+        "ECRT-ODHC010761732025_1_2025-11-11",
+        "ECRT-GJHC240073362019_1_2019-03-20",
+        "ECRT-ODHC010886022023_1_2023-11-15",
+        "ECRT-MPHC020295422018_1_2023-05-03"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.034782608695652174,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.830419897363192,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "CRO-0124",
+      "category": "cross_code_precedent",
+      "question": "What precedents are relevant for act endangering life or personal safety of others under Section 125 BNS?",
+      "answer": "Governing provision(s): BNS \u00a7125 (Act endangering life or personal safety of others), IPC \u00a7336 (Act endangering life or personal safety of others), IPC \u00a7337 (Causing hurt by act endangering life or personal safety of others), IPC \u00a7338 (Causing grievous hurt by act endangering life or personal safety of others). No offence date given: the answer covers both codes. Offences committed before 01 July 2024 fall under the IPC family; offences on or after it under BNS/BNSS/BSA.\nThe relevant preambles for act endangering life or personal safety of others under Section 125 BNS include:\n\n- **IPC 336** states: \"Whoever does any act so rashly or negligently as to endanger human life or the personal safety of others, shall be punished with imprisonment of either description for a term which may extend to three months or with fine which may extend to two hundred and fifty rupees, or with both.\"\n  \n- **IPC 337** specifies: \"Whoever causes hurt to any person by doing any act so rashly or negligently as to endanger human life, or the personal safety of others, shall be punished with imprisonment of either description for a term which may extend to six months, or with fine which may extend to five hundred rupees, or with both.\"\n\n- **IPC 338** outlines:\nDual citation: BNS \u00a7125 \u21c4 IPC \u00a7336; BNS \u00a7125 \u21c4 IPC \u00a7337; BNS \u00a7125 \u21c4 IPC \u00a7338\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "BNS_125"
+      ],
+      "governing": "both",
+      "ranked_docs": [
+        "ECRT-GJHC240146811988_1_2000-04-07",
+        "ECRT-JHHC010069842025_1_2025-12-17",
+        "ECRT-GJHC240238971995_1_2003-05-21",
+        "ECRT-GJHC240234411995_1_2007-09-28",
+        "ECRT-GJHC240165082021_2_2021-05-04"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.061224489795918366,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6992148198508501,
+      "cit_p": 0.0,
+      "cit_r": 0.0
+    },
+    {
+      "qid": "TEM-0220",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 354 IPC on 1 July 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a774 (Assault or use of criminal force to woman with intent to outrage her modesty). Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe code that governs the charge of assault or use of criminal force to a woman with intent to outrage her modesty, as per the new IPC transition, is the BNS (Bombay Native Statute). Specifically, Article 74 of the BNS deals with the offense covered by Section 354 IPC. Therefore, the governing code for the charge in question is:\n\n**Code:** BNS \u00a774\n\nThis code explicitly covers offenses related to outraging the modesty of women, aligning with the specific provision mentioned in the context.\nDual citation: BNS \u00a774 \u21c4 IPC \u00a7354\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_354"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-CGHC010079182020_1_2020-06-23",
+        "ECRT-GAHC010006102010_1_2020-03-04",
+        "ECRT-HCBM010246642021_1_2023-07-19",
+        "ECRT-BRHC010877432014_1_2017-02-13",
+        "ECRT-HCBM010450532016_1_2019-04-24"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.02531645569620253,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8539316501572937,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0221",
+      "category": "temporal",
+      "question": "The offence of punishment for public nuisance in cases not otherwise provided for was committed on 12 March 2019. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a740 (\u201cOffence\u201d), IPC \u00a7290 (Punishment for public nuisance in cases not otherwise provided for), IPC \u00a7268 (Public nuisance), IPC \u00a712 (\u201cPublic\u201d). Offence date 12 March 2019 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of committing public nuisance on 12 March 2019 falls under the jurisdiction of the Indian Penal Code (IPC). According to IPC \u00a7290, \"Punishment for public nuisance in cases not otherwise provided for,\" anyone who commits a public nuisance in a case not covered by the Code shall be punished with a fine up to two hundred rupees. Therefore, the punishment for the offense committed on 12 March 2019 is a fine of up to two hundred rupees.\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a7292 \u21c4 IPC \u00a7290; BNS \u00a7270 \u21c4 IPC \u00a7268; BNS \u00a72 \u21c4 IPC \u00a712\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_40",
+        "IPC_290",
+        "IPC_268",
+        "IPC_12",
+        "BNS_292",
+        "BNS_270"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-HBHC010071942025_1_2025-02-11",
+        "ECRT-HCBM040113072023_1_2023-08-08",
+        "ECRT-BRHC010583612023_1_2023-08-02",
+        "ECRT-JKHC010020282020_1_2020-08-27"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.16666666666666666,
+      "prec": 0.2,
+      "mrr": 0.25,
+      "ndcg": 0.14606834984270645,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0223",
+      "category": "temporal",
+      "question": "The offence of possession of indian coin by person who knew it to be counterfeit when he became possessed thereof was committed on 12 March 2019. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a740 (\u201cOffence\u201d), IPC \u00a728 (\u201cCounterfeit\u201d), IPC \u00a7242 (Possession of counterfeit coin by person who knew it to be counterfeit when he became possessed thereof), IPC \u00a7232 (Counterfeiting Indian coin), IPC \u00a7231 (Counterfeiting coin). Offence date 12 March 2019 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of possessing counterfeit Indian coins falls under the provisions of the Indian Penal Code (IPC) for cases prior to the transition to the Bombay National Securities Code (BNS) on July 1, 2024. According to IPC \u00a7242:\n\n\"Whoever, fraudulently or with intent that fraud may be committed, is in possession of counterfeit coin, having known at the time when he became possessed thereof that such coin was counterfeit, shall be punished with imprisonment of either description for a term which may extend to three years, and shall also be liable to fine.\"\n\nThis provision directly addresses the scenario described in the question where someone possessed counterfeit Indian coins with knowledge of their counterfeit nature. The punishment prescribed under IPC \u00a7242 is imprisonment for up to three years along with a fine.\n\nTherefore, based on the information provided, the applicable provision is IPC \u00a7242\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a72 \u21c4 IPC \u00a728; BNS \u00a7180 \u21c4 IPC \u00a7242; BNS \u00a7178 \u21c4 IPC \u00a7232; BNS \u00a7178 \u21c4 IPC \u00a7231\nThis is general legal information, not legal advice. Verif",
+      "resolved": [
+        "IPC_40",
+        "IPC_28",
+        "IPC_242",
+        "IPC_232",
+        "IPC_231"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-BRHC010514352012_1_2012-08-06",
+        "ECRT-JHHC010380232017_1_2017-06-19",
+        "ECRT-GJHC240067782019_4_2019-03-13",
+        "ECRT-KAHC010090862014_1_2017-10-12",
+        "ECRT-S_1959_1_274_310_EN"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.25,
+      "prec": 0.2,
+      "mrr": 1.0,
+      "ndcg": 0.3903800499921017,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0225",
+      "category": "temporal",
+      "question": "The offence of habitually dealing in stolen property was committed on 5 January 2023. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a7413 (Habitually dealing in stolen property), IPC \u00a7410 (Stolen property), IPC \u00a740 (\u201cOffence\u201d), IPC \u00a7411 (Dishonestly receiving stolen property), IPC \u00a7412 (Dishonestly receiving property stolen in the commission of a dacoity), IPC \u00a7414 (Assisting in concealment of stolen property). Offence date 05 January 2023 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of habitually dealing in stolen property was committed on 5 January 2023, which falls under the IPC (Indian Penal Code) provisions. According to the IPC, whoever habitually receives or deals in property known or believed to be stolen property will face severe penalties:\n\n**Penalty:** Imprisonment for life or up to 10 years, along with a fine.\n\nThis offense includes actions like receiving stolen property knowingly or believing it to be stolen, even if the property later turns out to be legally owned. The IPC provides clear guidelines for prosecuting habitual offenders of this nature.\n\nFor more detailed information, refer to **IPC \u00a7413**, which outlines the specific penalty for habitual dealing in stolen property. This statute ensures that those involved in repeated illegal activities related to stolen property are held accountable according to the new IPC provisions.\nDual citation: BNS \u00a7317 \u21c4 IPC \u00a7413; BNS \u00a7317 \u21c4 IPC \u00a7410; BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a7317 \u21c4 IPC \u00a7411; BNS \u00a7317 \u21c4 IPC \u00a7412; BNS \u00a7317 \u21c4 IPC \u00a741",
+      "resolved": [
+        "IPC_413",
+        "IPC_410",
+        "IPC_40",
+        "BNS_317"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-BRHC010896182017_1_2017-07-07",
+        "ECRT-BRHC010865532017_1_2017-06-28",
+        "ECRT-BRHC010650672023_1_2023-08-11",
+        "ECRT-GJHC240042301984_1_1998-11-10",
+        "ECRT-WBCHCJ0060712024_1_2025-04-28"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.037037037037037035,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6843515475204855,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0227",
+      "category": "temporal",
+      "question": "The offence of intentional insult with intent to provoke breach of the peace was committed on 30 June 2024. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a7504 (Intentional insult with intent to provoke breach of the peace), IPC \u00a740 (\u201cOffence\u201d), IPC \u00a7489 (Tampering with property mark with intent to cause injury). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of intentional insult with intent to provoke breach of the peace committed on 30 June 2024 falls under the provisions of the Indian Penal Code (IPC). According to IPC \u00a7504, the punishment for this offense includes imprisonment of either description for a term which may extend to two years, or with fine, or with both. Therefore, the applicable provision is IPC \u00a7504, and the punishment is imprisonment of either description for a term which may extend to two years, or with fine, or with both.\nDual citation: BNS \u00a7352 \u21c4 IPC \u00a7504; BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a7352 \u21c4 IPC \u00a7489\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_504",
+        "IPC_40",
+        "BNS_352"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-GJHC240265732021_3_2021-08-09",
+        "ECRT-HBHC010331462025_1_2025-07-31",
+        "ECRT-GAHC010217062023_1_2023-10-09",
+        "ECRT-1973_1_488_492_EN",
+        "ECRT-BRHC010917282025_1_2025-09-10"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.007042253521126761,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6843515475204855,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0231",
+      "category": "temporal",
+      "question": "The offence of acts done by several persons in furtherance of common intention was committed on 30 June 2024. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a740 (\u201cOffence\u201d), IPC \u00a734 (Acts done by several persons in furtherance of common intention). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of acts done by several persons in furtherance of common intention was committed on 30 June 2024. According to the context, the IPC governs the offence since the date falls before 01 July 2024. Under the IPC, Section 34 states that when a criminal act is done by several persons in furtherance of the common intention of all, each of such persons is liable for that act in the same manner as if it were done by him alone. Therefore, the applicable provision is IPC 34, and the punishment is imprisonment for a term of up to seven years.\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a73 \u21c4 IPC \u00a734\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_40",
+        "IPC_34"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-HBHC010071942025_1_2025-02-11",
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-BRHC010650672023_1_2023-08-11",
+        "ECRT-BRHC010415702025_1_2025-10-08",
+        "ECRT-MPHC020273962016_1_2017-01-17"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.0016433853738701725,
+      "prec": 0.4,
+      "mrr": 1.0,
+      "ndcg": 0.5087403079104241,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0232",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 294 IPC on 1 July 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7296 (Obscene acts and songs). Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe code that governs the charge under Section 294 IPC on 1 July 2024 is the BNS (Code of Criminal Procedure, 1973).\n\nThis can be seen from the context where it states:\n\n\"Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\"\n\nAdditionally, the statute related to obscenity offenses under the BNS provides guidance on how such charges should be handled:\n\n[BNS \u00a7296]\n\nIn the provided precedents, there are references to the BNS being applicable, indicating that the new provisions would apply to offenses occurring on or after 1 July 2024. For example:\n\n[ECRT-ODHC010725412025_1_202\nDual citation: BNS \u00a7296 \u21c4 IPC \u00a7294\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_294"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-ODHC010797362025_1_2025-11-18",
+        "ECRT-ODHC010821222025_1_2025-11-28",
+        "ECRT-ODHC010694962025_1_2025-12-02",
+        "ECRT-ODHC010725412025_1_2025-10-23",
+        "ECRT-CGHC010028552016_1_2023-10-05"
+      ],
+      "faithfulness": 1.0,
+      "code_correct": 1.0,
+      "recall": 0.037037037037037035,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0233",
+      "category": "temporal",
+      "question": "The offence of punishment for voluntarily causing hurt was committed on 30 June 2024. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a740 (\u201cOffence\u201d), IPC \u00a739 (\u201cVoluntarily\u201d), IPC \u00a7323 (Punishment for voluntarily causing hurt), IPC \u00a7321 (Voluntarily causing hurt), IPC \u00a7319 (Hurt). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of voluntary causing hurt committed on 30 June 2024 falls under the provisions of the Indian Penal Code (IPC). According to IPC \u00a7323, anyone who voluntarily causes hurt will face punishment with imprisonment up to one year, or a fine up to one thousand rupees, or both. This aligns with the IPC\u2019s definition of voluntary causing hurt in IPC \u00a7321, stating that someone intentionally causes hurt or knows they are likely to cause hurt and then does so.\n\nGiven the context, the applicable provision is IPC \u00a7323, and the punishment is imprisonment of up to one year, or a fine of up to one thousand rupees, or both. The decision-making process regarding the application of these laws should follow the procedures outlined in the Bharatiya Nagarik Suraksha Sanhita (BNS), specifically Section 482\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a72 \u21c4 IPC \u00a739; BNS \u00a7115 \u21c4 IPC \u00a7323; BNS \u00a7115 \u21c4 IPC \u00a7321; BNS \u00a7114 \u21c4 IPC \u00a7319\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_40",
+        "IPC_39",
+        "IPC_323",
+        "IPC_321",
+        "IPC_319",
+        "BNS_115",
+        "BNS_114"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-BRHC010917282025_1_2025-09-10",
+        "ECRT-JHHC010406372025_1_2025-12-12",
+        "ECRT-ODHC010761732025_1_2025-11-11",
+        "ECRT-S_1959_1_274_310_EN"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.0029985007496251873,
+      "prec": 0.4,
+      "mrr": 0.5,
+      "ndcg": 0.36005461457723403,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0236",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 474 IPC on 1 July 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7339 (Having possession of document described in section 337 or section 338, knowing it to be forged and intending to use it as genuine). Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe charge under Section 474 IPC applies to offenses committed on or after 01 July 2024, following the transition to the BNS. Therefore, the applicable code is the BNS. According to the governing rule:\n\n**GOVERNING:** Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offense.\n\nFor specific details about the charges under Sections 474 IPC and their corresponding provisions in the BNS, refer to the relevant statutes and precedents provided.\nDual citation: BNS \u00a7339 \u21c4 IPC \u00a7474\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_474"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-BRHC010894152017_1_2017-03-22",
+        "ECRT-GAHC040001622025_1_2025-01-31",
+        "ECRT-BRHC010682322025_1_2025-12-01",
+        "ECRT-MPHC010190182013_1_2019-04-22",
+        "ECRT-HCBM030395842022_1_2023-01-18"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.5,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 0.6843515475204855,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0237",
+      "category": "temporal",
+      "question": "The offence of punishment for belonging to gang of thieves was committed on 5 January 2023. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a7401 (Punishment for belonging to gang of thieves), IPC \u00a740 (\u201cOffence\u201d). Offence date 05 January 2023 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of belonging to a gang of thieves committed on 5 January 2023 falls under the jurisdiction of the Indian Penal Code (IPC), as the date is prior to the transition to the Bombay Nationality Schedule (BNS) on July 1, 2024. According to the IPC:\n\n**Section 401:** \n\"Whoever, at any time after the passing of this Act, shall belong to any wandering or other gang of persons associated for the purpose of habitually committing theft or robbery, and not being a gang of thugs or dacoits, shall be punished with rigorous imprisonment for a term which may extend to seven years, and shall also be liable to fine.\"\n\nSince the offence occurred before the transition, the relevant provision is **Section 401** of the IPC. \n\nGiven the nature of the offence described\u2014belonging\nDual citation: BNS \u00a7313 \u21c4 IPC \u00a7401; BNS \u00a72 \u21c4 IPC \u00a740\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_401",
+        "IPC_40"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-HCBM010336962006_1_2006-12-08",
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-S_1959_1_274_310_EN",
+        "ECRT-GJHC240265732021_3_2021-08-09",
+        "ECRT-BRHC010682322025_1_2025-12-01"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.0,
+      "prec": 0.0,
+      "mrr": 0.0,
+      "ndcg": 0.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0238",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 304B IPC on 1 July 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a780 (Dowry death). Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe charge under Section 304B IPC applies to offenses committed on or after July 1, 2024. Therefore, the applicable code governing the offense is the BNS (Code of Criminal Procedure, 1973).\n\nAccording to the context provided:\n\n- [ECRT-WBCHCA0312792018_8_2023-07-05\u00b62] states that \"charge sheet against the all accused persons u/s 498A/306/34 IPC.\"\n\nThis indicates that the prosecution has charged multiple individuals under various sections including 304B IPC. However, the specific section mentioned here does not directly apply to the question asked, as it pertains to charges under 498A and 306 IPC rather than 304B IPC.\nDual citation: BNS \u00a780 \u21c4 IPC \u00a7304B\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_304B"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-WBCHCA0387212016_22_2023-11-28",
+        "ECRT-BRHC010570102017_1_2017-08-09",
+        "ECRT-BRHC011053472022_1_2023-04-27",
+        "ECRT-MPHC030152532020_1_2020-08-27",
+        "ECRT-BRHC010792282012_1_2012-07-24"
+      ],
+      "faithfulness": 1.0,
+      "code_correct": 1.0,
+      "recall": 0.06153846153846154,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.7860137352654724,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0243",
+      "category": "temporal",
+      "question": "The offence of voluntarily causing hurt was committed on 12 March 2019. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a740 (\u201cOffence\u201d), IPC \u00a739 (\u201cVoluntarily\u201d), IPC \u00a7323 (Punishment for voluntarily causing hurt), IPC \u00a7321 (Voluntarily causing hurt), IPC \u00a7319 (Hurt). Offence date 12 March 2019 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of voluntarily causing hurt was committed on 12 March 2019, falling within the jurisdiction covered by the IPC prior to the transition to the new Criminal Procedure Code (CrPC) and Evidence Act (EA) on 1 July 2024. According to the IPC, voluntary causing hurt is punishable with imprisonment up to one year, or with a fine up to one thousand rupees, or both. This can be found in IPC \u00a7323. Given the specific circumstances outlined in the context, the appropriate provision remains IPC \u00a7323, and the punishment aligns with the IPC guidelines.\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a72 \u21c4 IPC \u00a739; BNS \u00a7115 \u21c4 IPC \u00a7323; BNS \u00a7115 \u21c4 IPC \u00a7321; BNS \u00a7114 \u21c4 IPC \u00a7319\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_40",
+        "IPC_39",
+        "IPC_323",
+        "IPC_321",
+        "IPC_319",
+        "BNS_115",
+        "BNS_114"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-BRHC010917282025_1_2025-09-10",
+        "ECRT-JHHC010406372025_1_2025-12-12",
+        "ECRT-ODHC010761732025_1_2025-11-11",
+        "ECRT-S_1959_1_274_310_EN"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.005934718100890208,
+      "prec": 0.4,
+      "mrr": 0.5,
+      "ndcg": 0.36005461457723403,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0244",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 252 IPC on 2 January 2025. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7180 (Possession of forged or counterfeit coin, Government stamp, currency-notes or bank-notes). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe charge under Section 252 IPC applies to the offense committed on 2 January 2025. According to the context provided:\n\n- **Governing Code**: The BNS (Bangladesh National Security System) governs offenses committed on or after 01 July 2024.\n  \n- **Applicable Statute**: Section 252 of the BNS deals with the offense of forgery of coins, stamps, currency notes, or banknotes.\n\nTherefore, the charge under Section 252 IPC falls within the jurisdiction governed by the BNS, specifically under Section 252 of the Bangladesh National Security System.\nDual citation: BNS \u00a7180 \u21c4 IPC \u00a7240; BNS \u00a7180 \u21c4 IPC \u00a7242; BNS \u00a7180 \u21c4 IPC \u00a7243; BNS \u00a7180 \u21c4 IPC \u00a7250; BNS \u00a7180 \u21c4 IPC \u00a7251; BNS \u00a7180 \u21c4 IPC \u00a7252; BNS \u00a7180 \u21c4 IPC \u00a7259; BNS \u00a7180 \u21c4 IPC \u00a7489C\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_252"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-GAHC010271442025_1_2025-12-18",
+        "ECRT-BRHC010420652025_1_2025-09-10",
+        "ECRT-WBCHCJ0040962025_1_2025-08-20",
+        "ECRT-MPHC010190182013_1_2019-04-22",
+        "ECRT-HBHC010477812025_1_2025-08-26"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 1.0,
+      "prec": 0.6,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0246",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 342 IPC on 1 July 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7127 (Wrongful confinement). Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe code that governs the charge of committing an offence under Section 342 IPC on 1 July 2024 is the BNS (Code of Criminal Procedure, 1973).\n\nThis determination is based on the following:\n\n1. **Governing Code**: According to the CONTEXT provided, \"Offence date 01 July 2024 is on or after 01 July 2024: the BNS governs the offence.\" This directly states that the BNS applies to charges committed on or after July 1, 2024.\n\n2. **Statutes**: The relevant statute is BNS \u00a7127, which defines wrongful confinement and outlines punishments for wrongful confinement offenses. This statute aligns with the jurisdictional change from IPC to BNS effective July 1, 2024.\n\n3.\nDual citation: BNS \u00a7127 \u21c4 IPC \u00a7340; BNS \u00a7127 \u21c4 IPC \u00a7341; BNS \u00a7127 \u21c4 IPC \u00a7342; BNS \u00a7127 \u21c4 IPC \u00a7343; BNS \u00a7127 \u21c4 IPC \u00a7344; BNS \u00a7127 \u21c4 IPC \u00a7345; BNS \u00a7127 \u21c4 IPC \u00a7346; BNS \u00a7127 \u21c4 IPC \u00a7347; BNS \u00a7127 \u21c4 IPC \u00a7348\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_342"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-MPHC010154902019_1_2023-06-21",
+        "ECRT-CGHC010273252020_1_2023-07-14",
+        "ECRT-GAHC040018942024_1_2025-01-31",
+        "ECRT-MPHC010214452014_1_2017-03-10",
+        "ECRT-S_1959_1_274_310_EN"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.010869565217391304,
+      "prec": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.16958010263680806,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0248",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 21 IPC on 2 January 2025. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a72 (Definitions). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe code that governs the charge of the accused committing an offence under Section 21 IPC on 2 January 2025 is the BNS (Bombay Native Code).\n\nThis determination is based on the following:\n\n1. **Context**: The question asks about the applicable code for a crime committed on or after 01 July 2024. According to the CONTEXT provided, if the offence date is on or after 01 July 2024, then the BNS governs the offence.\n\n2. **Statutes and Precedents**:\n   - **Section 2 of the Bombay Native Code (BNS)** defines key terms like \"act,\" \"animal,\" \"child,\" etc., similar to the definitions found in the Indian Penal Code (IPC).\n   - **Precedents** indicate that the BNS applies to cases where the offence\nDual citation: BNS \u00a72 \u21c4 IPC \u00a78; BNS \u00a72 \u21c4 IPC \u00a79; BNS \u00a72 \u21c4 IPC \u00a710; BNS \u00a72 \u21c4 IPC \u00a711; BNS \u00a72 \u21c4 IPC \u00a712; BNS \u00a72 \u21c4 IPC \u00a713; BNS \u00a72 \u21c4 IPC \u00a714; BNS \u00a72 \u21c4 IPC \u00a717; BNS \u00a72 \u21c4 IPC \u00a719; BNS \u00a72 \u21c4 IPC \u00a720; BNS \u00a72 \u21c4 IPC \u00a721; BNS \u00a72 \u21c4 IPC \u00a722; BNS \u00a72 \u21c4 IPC \u00a724; BNS \u00a72 \u21c4 IPC \u00a725; BNS \u00a72 \u21c4 IPC \u00a726; BNS \u00a72 \u21c4 IPC \u00a728; BNS \u00a72 \u21c4 IPC \u00a729; BNS \u00a72 \u21c4 IPC \u00a729A; BNS \u00a72 \u21c4 IPC \u00a730; BNS \u00a72 \u21c4 IPC \u00a731; BNS \u00a72 \u21c4 IPC \u00a732; BNS \u00a72 \u21c4 IPC \u00a733; BNS \u00a72 \u21c4 IPC \u00a739; BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a72 \u21c4 IPC \u00a741; BNS \u00a72 \u21c4 IPC \u00a742; BNS \u00a72 \u21c4 IPC \u00a743; BNS \u00a72 \u21c4 IPC \u00a748; BNS \u00a72 \u21c4 IPC \u00a749; BNS \u00a72 \u21c4 IPC \u00a751; BNS \u00a72 \u21c4 IPC \u00a752; BNS \u00a72 \u21c4 IPC \u00a752A; BNS \u00a72 \u21c4 IPC \u00a7216B\nThis is general legal information, not legal advice. Verify ",
+      "resolved": [
+        "IPC_21"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-ODHC010492592011_1_2012-02-02",
+        "ECRT-GJHC240141462021_3_2021-07-06",
+        "ECRT-ODHC010690302025_1_2025-10-09",
+        "ECRT-TRHC010018622025_1_2025-12-11",
+        "ECRT-HCBM010098702022_1_2023-01-23"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.2857142857142857,
+      "prec": 0.4,
+      "mrr": 1.0,
+      "ndcg": 0.5087403079104241,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0252",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 364 IPC on 15 August 2024. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7140 (Kidnapping or abducting in order to murder or for ransom, etc). Offence date 15 August 2024 is on or after 01 July 2024: the BNS governs the offence.\nThe code governing the charge of kidnapping or abducting in order to murder or for ransom, etc., as mentioned in Section 364 IPC, applies to offenses committed on or after July 1, 2024. Therefore, the appropriate code for the offense committed on August 15, 2024, is:\n\n**Code Governing:** BNS (Bombay Native Schedule)\n\nThis can be seen from the context where it states \"Offence date 15 August 2024 is on or after 01 July 2024: the BNS governs the offence.\"\nDual citation: BNS \u00a7140 \u21c4 IPC \u00a7364; BNS \u00a7140 \u21c4 IPC \u00a7364A; BNS \u00a7140 \u21c4 IPC \u00a7365; BNS \u00a7140 \u21c4 IPC \u00a7367; BNS \u00a7140 \u21c4 IPC \u00a7368\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_364"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-HCBM010136272019_1_2019-11-25",
+        "ECRT-MPHC020123232023_1_2023-04-28",
+        "ECRT-HCBM010098702022_1_2023-01-23",
+        "ECRT-HCBM010239032014_1_2014-11-18",
+        "ECRT-CGHC010091202020_1_2020-06-11"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.04081632653061224,
+      "prec": 0.4,
+      "mrr": 0.5,
+      "ndcg": 0.38356636737133565,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0254",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 432 IPC on 2 January 2025. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7326 (Mischief by injury, inundation, fire or explosive substance, etc). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe charge under Section 432 IPC applies to offenses committed on or after July 1, 2024. Therefore, the applicable code is:\n\n**Code Governing the Charge:** BNS\n\nThis can be seen from the context where it states \"Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\"\nDual citation: BNS \u00a7326 \u21c4 IPC \u00a7430; BNS \u00a7326 \u21c4 IPC \u00a7431; BNS \u00a7326 \u21c4 IPC \u00a7432; BNS \u00a7326 \u21c4 IPC \u00a7433; BNS \u00a7326 \u21c4 IPC \u00a7434; BNS \u00a7326 \u21c4 IPC \u00a7435; BNS \u00a7326 \u21c4 IPC \u00a7436\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_432"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-JKHC020027612025_1_2025-10-28",
+        "ECRT-ODHC010789552025_1_2025-11-17",
+        "ECRT-BRHC011068002025_1_2025-11-18",
+        "ECRT-BRHC010875092025_1_2025-11-21",
+        "ECRT-BRHC010703042025_1_2025-11-15"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.38461538461538464,
+      "prec": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0255",
+      "category": "temporal",
+      "question": "The offence of mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees was committed on 30 June 2024. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a7435 (Mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees), IPC \u00a7426 (Punishment for mischief), IPC \u00a7425 (Mischief), IPC \u00a740 (\u201cOffence\u201d), IPC \u00a7427 (Mischief causing damage to the amount of fifty rupees), IPC \u00a7440 (Mischief committed after preparation made for causing death or hurt). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of mischief by fire or explosive substance with intent to cause damage to amount of one hundred or (in case of agricultural produce) ten rupees was committed on 30 June 2024. According to the IPC, the relevant provision states:\n\n**[IPC \u00a7435]**  \n\nTherefore, the applicable provision is **IPC \u00a7435**, and the punishment is **seven years' imprisonment and a fine**.\nDual citation: BNS \u00a7326 \u21c4 IPC \u00a7435; BNS \u00a7324 \u21c4 IPC \u00a7426; BNS \u00a7324 \u21c4 IPC \u00a7425; BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a7324 \u21c4 IPC \u00a7427; BNS \u00a7324 \u21c4 IPC \u00a7440\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_435",
+        "IPC_426",
+        "IPC_425",
+        "IPC_40",
+        "BNS_324"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-1973_1_488_492_EN",
+        "ECRT-BRHC011068002025_1_2025-11-18",
+        "ECRT-JKHC020027612025_1_2025-10-28",
+        "ECRT-BRHC011088322025_1_2025-11-27",
+        "ECRT-BRHC010902842017_1_2017-07-01"
+      ],
+      "faithfulness": 1.0,
+      "recall": 0.18181818181818182,
+      "prec": 0.8,
+      "mrr": 0.5,
+      "ndcg": 0.6608397947263839,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0256",
+      "category": "temporal",
+      "question": "The accused committed an offence under Section 273 IPC on 2 January 2025. Which code governs the charge?",
+      "answer": "Governing provision(s): BNS \u00a7275 (Sale of noxious food or drink). Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\nThe charge under Section 273 IPC applies to offenses committed on or after July 1, 2024. Therefore, the applicable code is:\n\n**Code Governing the Charge:** BNS (Bombay)\n\nThis can be seen from the context where it states \"Offence date 02 January 2025 is on or after 01 July 2024: the BNS governs the offence.\"\nDual citation: BNS \u00a7275 \u21c4 IPC \u00a7273\nThis is general legal information, not legal advice. Verify against the bare act and consult a lawyer.",
+      "resolved": [
+        "IPC_273"
+      ],
+      "governing": "new",
+      "ranked_docs": [
+        "ECRT-HCBM070357212022_1_2023-01-03",
+        "ECRT-BRHC010477252023_1_2023-07-26",
+        "ECRT-BRHC011262722025_1_2025-12-15",
+        "ECRT-HCBM010299412023_1_2023-07-10",
+        "ECRT-KLHC010152402016_1_2016-01-29"
+      ],
+      "faithfulness": 0.0,
+      "code_correct": 1.0,
+      "recall": 0.06666666666666667,
+      "prec": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8687949224876582,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    },
+    {
+      "qid": "TEM-0257",
+      "category": "temporal",
+      "question": "The offence of extortion by threat of accusation of an offence punishable with death or impri sonment for life, etc was committed on 30 June 2024. Which provision applies and what is the punishment?",
+      "answer": "Governing provision(s): IPC \u00a746 (\u201cDeath\u201d), IPC \u00a745 (\u201cLife\u201d), IPC \u00a740 (\u201cOffence\u201d), IPC \u00a7384 (Punishment for extortion), IPC \u00a7383 (Extortion), IPC \u00a7385 (Putting person in fear of injury in order to commit extortion), IPC \u00a7386 (Extortion by putting a person in fear of death or grievous hurt), IPC \u00a7387 (Putting person in fear of death or of grievous hurt, in order to commit extortion), IPC \u00a7388 (Extortion by threat of accusation of an offence punishable with death or impri sonment for life, etc), IPC \u00a7389 (Putting person in fear or accusation of offence, in order to commit extortion). Offence date 30 June 2024 is before 01 July 2024: the IPC governs the offence. Procedure for proceedings after that date may fall under the BNSS savings clause.\nThe offence of extortion by threat of accusation of an offence punishable with death or imprisonment for life occurred on 30 June 2024. According to the IPC, the relevant provision is IPC 384, which states:\n\n\"Whoever commits extortion shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both.\"\n\nSince the offence took place before 01 July 2024, the IPC governs the proceedings. Therefore, the punishment for the offense of extortion by threat of accusation of an offence punishable with death or imprisonment for life is imprisonment of either description for a term which may extend to three years, or with fine, or with both.\nDual citation: BNS \u00a72 \u21c4 IPC \u00a740; BNS \u00a7308 \u21c4 IPC \u00a738",
+      "resolved": [
+        "IPC_46",
+        "IPC_45",
+        "IPC_40",
+        "IPC_384",
+        "IPC_383",
+        "BNS_308"
+      ],
+      "governing": "old",
+      "ranked_docs": [
+        "ECRT-CGHC010264542023_1_2023-09-19",
+        "ECRT-GJHC240265732021_3_2021-08-09",
+        "ECRT-BRHC010300342016_1_2017-01-12",
+        "ECRT-JHHC010403802022_1_2023-04-05",
+        "ECRT-BRHC010896892023_1_2023-12-13"
+      ],
+      "faithfulness": 0.0,
+      "recall": 0.022727272727272728,
+      "prec": 0.2,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.16958010263680806,
+      "cit_p": 0.0,
+      "cit_r": 0.0,
+      "temporal_correct": 1.0
+    }
+  ],
+  "system": "lexbridge"
+}

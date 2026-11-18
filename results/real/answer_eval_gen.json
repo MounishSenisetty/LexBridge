@@ -1,0 +1,55 @@
+{
+  "no_rag": {
+    "offence_hit": 0.2667,
+    "n": 60,
+    "grounded_rate": null,
+    "citation_format_rate": 0.0,
+    "per_category": {
+      "collision": 0.0,
+      "cross_code_precedent": 0.65,
+      "temporal": 0.15
+    }
+  },
+  "hybrid": {
+    "offence_hit": 0.4,
+    "n": 60,
+    "grounded_rate": 0.6098,
+    "citation_format_rate": 0.0667,
+    "per_category": {
+      "collision": 0.05,
+      "cross_code_precedent": 0.75,
+      "temporal": 0.4
+    }
+  },
+  "lexbridge": {
+    "offence_hit": 0.7667,
+    "n": 60,
+    "grounded_rate": 0.6066,
+    "citation_format_rate": 0.05,
+    "per_category": {
+      "collision": 0.7,
+      "cross_code_precedent": 0.95,
+      "temporal": 0.65
+    }
+  },
+  "significance_offence_hit_lexbridge_vs": {
+    "hybrid": {
+      "n": 60,
+      "diff": 0.367,
+      "ci95": [
+        0.25,
+        0.5
+      ],
+      "p": 0.0
+    },
+    "no_rag": {
+      "n": 60,
+      "diff": 0.5,
+      "ci95": [
+        0.383,
+        0.633
+      ],
+      "p": 0.0
+    }
+  }
+}
