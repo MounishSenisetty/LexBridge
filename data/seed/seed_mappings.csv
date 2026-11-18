@@ -1,0 +1,12 @@
+old_code,old_section,new_code,new_section,title,change_type,notes,verified
+IPC,302,BNS,103,Murder,unknown,,false
+IPC,307,BNS,109,Attempt to murder,unknown,,false
+IPC,420,BNS,318,Cheating,unknown,,false
+IPC,379,BNS,303,Theft,unknown,,false
+IPC,376,BNS,64,Rape,unknown,,false
+IPC,498A,BNS,85,Cruelty by husband or relatives,unknown,,false
+IPC,304B,BNS,80,Dowry death,unknown,,false
+IPC,306,BNS,108,Abetment of suicide,unknown,,false
+IPC,298,BNS,302,Wounding religious feelings,unknown,COLLISION CASE: BNS 302 is not murder,false
+IPC,124A,BNS,152,Sedition / acts endangering sovereignty,unknown,not identical,false
+IPC,377,,,Unnatural offences,omitted,no corresponding BNS section,false

@@ -1,0 +1,42 @@
+# LexBridge-QA question templates. Every generated item is a DRAFT until two annotators label it.
+# Placeholders: {num} {code} {code_long} {old} {new} {title} {date}
+code_long:
+  IPC: Indian Penal Code
+  BNS: Bharatiya Nyaya Sanhita
+
+collision:        # same number, different offence across codes
+  - "What is the punishment under Section {num} {code}?"
+  - "Explain the offence under Section {num} of the {code_long}."
+  - "What are the ingredients of an offence under Section {num} {code}?"
+  - "Find case law on Section {num} {code}."
+  - "Is a charge under Section {num} {code} a serious offence?"
+  - "What does Section {num} of the {code_long} deal with?"
+collision_implicit:   # no code named; the offence date decides it
+  - "What is the punishment under Section {num} for an offence committed on {date}?"
+
+cross_code_precedent:  # BNS question, IPC-era precedent needed
+  - "What precedents are relevant for {title} under Section {new} BNS?"
+  - "Are there judgments interpreting Section {new} of the Bharatiya Nyaya Sanhita?"
+
+temporal:
+  - "The offence of {title} was committed on {date}. Which provision applies and what is the punishment?"
+  - "The accused committed an offence under Section {old} IPC on {date}. Which code governs the charge?"
+dates_before: ["12 March 2019", "5 January 2023", "30 June 2024"]
+dates_after: ["15 August 2024", "2 January 2025", "1 July 2024"]   # 1 July 2024 is the boundary (new code)
+
+transfer:
+  - "Can a precedent decided under Section {old} IPC be relied upon for an offence under the corresponding BNS provision?"
+
+# DRAFT gold applicability tags (author judgement on the fixture statute texts; NOT annotated, NOT verified).
+draft_transfer_gold:
+  IPC_302: DIRECTLY_APPLICABLE       # 103(1) reproduces 302; 103(2) adds a new aggravated form
+  IPC_307: DIRECTLY_APPLICABLE
+  IPC_420: APPLICABLE_WITH_CAVEAT    # folded into 318 with the definition of cheating
+  IPC_379: APPLICABLE_WITH_CAVEAT    # punishment for repeat offenders changed
+  IPC_376: DIRECTLY_APPLICABLE
+  IPC_498A: DIRECTLY_APPLICABLE
+  IPC_304B: DIRECTLY_APPLICABLE
+  IPC_306: DIRECTLY_APPLICABLE
+  IPC_298: APPLICABLE_WITH_CAVEAT    # "simple imprisonment" in the fixture text
+  IPC_124A: REVIEW_REQUIRED
+  IPC_377: NOT_APPLICABLE
